@@ -37,7 +37,7 @@
       <Label fx:id="lbl_52" alignment="CENTER" layoutX="202.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
       <Label fx:id="lbl_53" alignment="CENTER" layoutX="283.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
       <Label fx:id="lbl_54" alignment="CENTER" layoutX="364.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
-      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="161.0" layoutY="665.0" promptText="Digite a palavra" />
+      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="161.0" layoutY="665.0" promptText="DIGITE A PALAVRA" />
       <Button fx:id="btn_EnviarPalavra" layoutX="173.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="36.0" prefWidth="129.0" text="Enviar Palavra" />
       <Label layoutX="29.0" layoutY="793.0" style="-fx-font-size: 16;" text="Tentativas:" textAlignment="CENTER" />
       <Label fx:id="lbl_Tentativas" layoutX="117.0" layoutY="793.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 16;" textAlignment="CENTER" />

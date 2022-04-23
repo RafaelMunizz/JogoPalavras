@@ -65,11 +65,8 @@ public class FXMLGameController implements Initializable {
         
         String palavra = txtField_DigitarPalavra.getText();
         
-        if (analisePalavra(palavra) || palavra.length() != 5){
+        if (analisePalavra(palavra)){
             
-            JOptionPane.showMessageDialog(null, "Entrada Inválida. Coloque uma palavra com 5 letras!");
-            
-        } else {
             String[] palavraSeparada = palavra.toUpperCase().split("");
 
             lbl_00.setText(palavraSeparada[0]);
@@ -77,17 +74,23 @@ public class FXMLGameController implements Initializable {
             lbl_02.setText(palavraSeparada[2]);
             lbl_03.setText(palavraSeparada[3]);
             lbl_04.setText(palavraSeparada[4]);
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Entrada Inválida. Coloque uma palavra com 5 letras!");
         }
     }
     
+    // Método para analisar se a palavra tem 5 letras e não contém números
     boolean analisePalavra(String p){
+        
+        if (p.length() != 5) return false;
         
         char[] chars = p.toCharArray();
         
         for (char c : chars){
-            if (Character.isDigit(c)){return true;} 
+            if (Character.isDigit(c)){return false;} 
         }
-        return false;
+        return true;
     }
      
     @Override
