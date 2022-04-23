@@ -1,5 +1,5 @@
 
-package javabasico;
+package jogopalavras;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,8 +9,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
-public class FXMLButtonController implements Initializable {
+public class FXMLGameController implements Initializable {
     
     //Primeira palavra
     @FXML private Label lbl_00;
@@ -57,23 +58,40 @@ public class FXMLButtonController implements Initializable {
     //Demais coisas
     @FXML private TextField txtField_DigitarPalavra;
     @FXML private Button btn_EnviarPalavra;
+    @FXML private Label lbl_Tentativas;
     
     @FXML
     void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
-        String[] palavraSeparada = txtField_DigitarPalavra.getText().split("");
+        String palavra = txtField_DigitarPalavra.getText();
         
-        
-        lbl_00.setText(palavraSeparada[0]);
-        lbl_01.setText(palavraSeparada[1]);
-        lbl_02.setText(palavraSeparada[2]);
-        lbl_03.setText(palavraSeparada[3]);
-        lbl_04.setText(palavraSeparada[4]);
-        
-    }  
+        if (analisePalavra(palavra) || palavra.length() != 5){
+            
+            JOptionPane.showMessageDialog(null, "Entrada Inválida. Coloque uma palavra com 5 letras!");
+            
+        } else {
+            String[] palavraSeparada = palavra.toUpperCase().split("");
 
+            lbl_00.setText(palavraSeparada[0]);
+            lbl_01.setText(palavraSeparada[1]);
+            lbl_02.setText(palavraSeparada[2]);
+            lbl_03.setText(palavraSeparada[3]);
+            lbl_04.setText(palavraSeparada[4]);
+        }
+    }
+    
+    boolean analisePalavra(String p){
+        
+        char[] chars = p.toCharArray();
+        
+        for (char c : chars){
+            if (Character.isDigit(c)){return true;} 
+        }
+        return false;
+    }
+     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        lbl_Tentativas.setText("6");
     }
 }
