@@ -1,8 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXML.java to edit this template
- */
-package javabasico;
+
+package jogopalavras;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,15 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author rafae
- */
-public class JavaBasico extends Application {
+public class JogoPalavras extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLButton.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLGame.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -32,5 +25,4 @@ public class JavaBasico extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
 }
