@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="837.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FXMLGameController">
+    <children>
+      <Label fx:id="lbl_00" alignment="CENTER" graphicTextGap="0.0" layoutX="40.0" layoutY="41.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_01" alignment="CENTER" layoutX="121.0" layoutY="41.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_02" alignment="CENTER" layoutX="202.0" layoutY="41.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_03" alignment="CENTER" layoutX="283.0" layoutY="41.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_04" alignment="CENTER" layoutX="364.0" layoutY="41.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_10" alignment="CENTER" layoutX="40.0" layoutY="125.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_11" alignment="CENTER" layoutX="121.0" layoutY="125.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_12" alignment="CENTER" layoutX="202.0" layoutY="125.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_13" alignment="CENTER" layoutX="283.0" layoutY="125.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_14" alignment="CENTER" layoutX="364.0" layoutY="125.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_20" alignment="CENTER" layoutX="40.0" layoutY="210.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_21" alignment="CENTER" layoutX="121.0" layoutY="210.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_22" alignment="CENTER" layoutX="202.0" layoutY="210.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_23" alignment="CENTER" layoutX="283.0" layoutY="210.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_24" alignment="CENTER" layoutX="364.0" layoutY="210.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_30" alignment="CENTER" layoutX="40.0" layoutY="296.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_31" alignment="CENTER" layoutX="121.0" layoutY="296.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_32" alignment="CENTER" layoutX="202.0" layoutY="296.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_33" alignment="CENTER" layoutX="283.0" layoutY="296.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_34" alignment="CENTER" layoutX="364.0" layoutY="296.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_40" alignment="CENTER" layoutX="40.0" layoutY="382.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_41" alignment="CENTER" layoutX="121.0" layoutY="382.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_42" alignment="CENTER" layoutX="202.0" layoutY="382.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_43" alignment="CENTER" layoutX="283.0" layoutY="382.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_44" alignment="CENTER" layoutX="364.0" layoutY="382.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_50" alignment="CENTER" layoutX="40.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_51" alignment="CENTER" layoutX="121.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_52" alignment="CENTER" layoutX="202.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_53" alignment="CENTER" layoutX="283.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <Label fx:id="lbl_54" alignment="CENTER" layoutX="364.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
+      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="161.0" layoutY="665.0" promptText="DIGITE A PALAVRA" />
+      <Button fx:id="btn_EnviarPalavra" layoutX="173.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="36.0" prefWidth="129.0" text="Enviar Palavra" />
+      <Label layoutX="29.0" layoutY="793.0" style="-fx-font-size: 16;" text="Tentativas:" textAlignment="CENTER" />
+      <Label fx:id="lbl_Tentativas" layoutX="117.0" layoutY="793.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 16;" textAlignment="CENTER" />
+    </children>
+</AnchorPane>
