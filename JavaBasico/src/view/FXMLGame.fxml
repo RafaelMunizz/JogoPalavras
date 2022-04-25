@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="837.0" prefWidth="474.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FXMLGameController">
     <children>
@@ -37,9 +38,15 @@
       <Label fx:id="lbl_52" alignment="CENTER" layoutX="202.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
       <Label fx:id="lbl_53" alignment="CENTER" layoutX="283.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
       <Label fx:id="lbl_54" alignment="CENTER" layoutX="364.0" layoutY="469.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: gray; -fx-border-color: black; -fx-font-size: 50;" textAlignment="CENTER" textOverrun="CLIP" />
-      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="161.0" layoutY="665.0" promptText="DIGITE A PALAVRA" />
-      <Button fx:id="btn_EnviarPalavra" layoutX="173.0" layoutY="720.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="36.0" prefWidth="129.0" text="Enviar Palavra" />
-      <Label layoutX="29.0" layoutY="793.0" style="-fx-font-size: 16;" text="Tentativas:" textAlignment="CENTER" />
-      <Label fx:id="lbl_Tentativas" layoutX="117.0" layoutY="793.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 16;" textAlignment="CENTER" />
+      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="112.0" layoutY="619.0" promptText="Digite a palavra">
+         <font>
+            <Font name="Arial" size="20.0" />
+         </font></TextField>
+      <Button fx:id="btn_EnviarPalavra" layoutX="173.0" layoutY="683.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="36.0" prefWidth="129.0" text="Enviar palavra">
+         <font>
+            <Font name="Arial" size="16.0" />
+         </font></Button>
+      <Label layoutX="29.0" layoutY="782.0" prefHeight="36.0" prefWidth="95.0" style="-fx-font-size: 20;" text="Tentativas:" textAlignment="CENTER" />
+      <Label fx:id="lbl_Tentativas" layoutX="129.0" layoutY="786.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 19;" text="6" textAlignment="CENTER" />
     </children>
 </AnchorPane>
