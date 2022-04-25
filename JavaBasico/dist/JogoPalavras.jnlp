@@ -8,8 +8,8 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="JogoPalavras.jar" size="3846" download="eager" />
+    <jar href="JogoPalavras.jar" size="5340" download="eager" />
   </resources>
-  <jfx:javafx-desc  width="800" height="600" main-class="jogopalavras.JogoPalavras"  name="JogoPalavras" />
+  <jfx:javafx-desc  width="800" height="600" main-class="model.MainJogo"  name="JogoPalavras" />
   <update check="always"/>
 </jnlp>
