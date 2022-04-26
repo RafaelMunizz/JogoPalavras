@@ -1,2 +1,2 @@
 # JogoPalavras
- Projeto de desenvolvimento de um jogo que seja semelhante ao Term.ooo
+ Projeto de desenvolvimento de um jogo em JavaFX que seja semelhante ao Term.ooo
