@@ -1,14 +1,20 @@
 
 package control;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Alertas;
 
@@ -58,16 +64,33 @@ public class FXMLGameController implements Initializable {
     
     //Demais itens
     @FXML private TextField txtField_DigitarPalavra;
-    @FXML private Button btn_EnviarPalavra;
     @FXML private Label lbl_Tentativas;
     
     // Variáveis
     Alertas alerta = new Alertas();
     int tentativasRestantes = 6;
+    int totalAcertos = 0;
+    String palavraEscolhida = "seria";
+    
+    //SceneController
+    private Stage stage;
+    private Scene scene;
+    private Parent root;
+    
+    @FXML
+    public void switchToInitial(ActionEvent event) throws IOException {
+        
+        root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
     
     @FXML
     void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
+        System.out.println(event);
         if (analisePalavra(txtField_DigitarPalavra.getText())){
             
             switch(this.tentativasRestantes){
@@ -123,20 +146,68 @@ public class FXMLGameController implements Initializable {
         
         return true;
     }
-    
+    // Método para colocar as letras nos labels correspondentes e chegar se o jogador venceu ou perdeu
     void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
         
-            String[] palavraSeparada = txtField_DigitarPalavra.getText().toUpperCase().split("");
+            char[] palavraRecebidaSeparada = txtField_DigitarPalavra.getText().toUpperCase().toCharArray();
+            char[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().toCharArray();
 
-            lbl_0.setText(palavraSeparada[0]);
-            lbl_1.setText(palavraSeparada[1]);
-            lbl_2.setText(palavraSeparada[2]);
-            lbl_3.setText(palavraSeparada[3]);
-            lbl_4.setText(palavraSeparada[4]);
+            testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0, 0);
+            testeCaracteres(palavraRecebidaSeparada[1], palavraDefinitivaSeparada[1], lbl_1, 1);
+            testeCaracteres(palavraRecebidaSeparada[2], palavraDefinitivaSeparada[2], lbl_2, 2);
+            testeCaracteres(palavraRecebidaSeparada[3], palavraDefinitivaSeparada[3], lbl_3, 3);
+            testeCaracteres(palavraRecebidaSeparada[4], palavraDefinitivaSeparada[4], lbl_4, 4);
             
             txtField_DigitarPalavra.setText("");
+            
+            if(this.totalAcertos == 5){
+                //alerta.jogo_Ganhou();
+            }
+            
             this.tentativasRestantes--;
             lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
+            
+            if(this.tentativasRestantes == 0){
+                alerta.jogo_TentativasEsgotadas();
+            }
+    }
+    
+    // Método pada modificar os labels para a cor correspondente de ERRO, ACERTO ou SEMI-ACERTO (Possui a letra, mas não naquela posição)
+    void testeCaracteres(char letraRecebida, char letraDefinitiva, Label lbl, int indice){
+        
+        // ACERTO
+        if (letraRecebida == letraDefinitiva){
+            lbl.setText(String.valueOf(letraRecebida));
+            lbl.setStyle("-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+            lbl.setPrefHeight(75.0);
+            this.totalAcertos++;
+        
+        // SEMI-ACERTO
+        } else if (letraRecebida != letraDefinitiva && letraNaPalavra_PosicaoErrada(letraRecebida)) {
+            lbl.setText(String.valueOf(letraRecebida));
+            lbl.setStyle("-fx-background-color: #D3AD69; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+            lbl.setPrefHeight(75.0);
+        
+        //ERRO
+        } else if (letraRecebida != letraDefinitiva && !letraNaPalavra_PosicaoErrada(letraRecebida)){
+            lbl.setText(String.valueOf(letraRecebida));
+            lbl.setStyle("-fx-background-color: #312A2C; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+            lbl.setPrefHeight(75.0);
+        }
+    }
+    
+    // Método para analisar se a letra pertence a palavra e ela não está no local correto
+    boolean letraNaPalavra_PosicaoErrada(char letra){
+        
+        boolean verificacao = false; // Se verificacao mudar, a palavra possui a letra, mas ela não está na posição correta
+        char[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().toCharArray();
+        
+        for (char c : palavraDefinitivaSeparada){
+            if (c == letra){
+                verificacao = true;
+            } 
+        }
+        return verificacao;
     }
      
     @Override
