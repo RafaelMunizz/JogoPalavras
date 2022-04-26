@@ -10,19 +10,13 @@ import javafx.stage.Stage;
 public class MainJogo extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)  throws Exception {
         Parent Game = FXMLLoader.load(getClass().getResource("/view/FXMLGame.fxml"));
-        Parent InitialPage = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
 
         Scene sceneGame = new Scene(Game);
-        Scene sceneInitial = new Scene(InitialPage);
 
-        
         stage.setScene(sceneGame);
         stage.show();
-        
-        //stage.setScene(sceneInitial);
-        //stage.show();
         
     }
 
