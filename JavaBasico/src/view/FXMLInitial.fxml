@@ -5,13 +5,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FXMLInitialController">
+<AnchorPane id="AnchorPane" maxHeight="837.0" maxWidth="474.0" minHeight="837.0" minWidth="474.0" prefHeight="837.0" prefWidth="474.0" style="-fx-background-color: #6e5c62; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-color: #4c4347; -fx-border-width: 7; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FXMLInitialController">
    <children>
-      <Label layoutX="172.0" layoutY="42.0" text="INITIAL">
+      <Label contentDisplay="CENTER" layoutX="82.0" layoutY="31.0" prefHeight="238.0" prefWidth="311.0" style="-fx-font-weight: bold; -fx-font-size: 75;" text="Qual a palavra?" textAlignment="CENTER" textFill="#fafaff" wrapText="true">
          <font>
-            <Font size="73.0" />
+            <Font name="SansSerif" size="73.0" />
          </font>
       </Label>
-      <Button fx:id="btn_MudarPraJogo" layoutX="210.0" layoutY="200.0" mnemonicParsing="false" onAction="#switchToGame" prefHeight="70.0" prefWidth="158.0" text="Mudar Para jogo" />
+      <Button fx:id="btn_MudarPraJogo" layoutX="98.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleButtonAction_mudarParaJogo" prefHeight="77.0" prefWidth="279.0" style="-fx-background-color: #528560; -fx-background-radius: 30%; -fx-border-radius: 10%; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-background-insets: 0; -fx-font-weight: bold; -fx-font-size: 25;" text="Iniciar jogo" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="BotaoDeFechar" layoutX="134.0" layoutY="443.0" mnemonicParsing="false" onAction="#handleButtonAction_FecharJogo" prefHeight="31.0" prefWidth="207.0" style="-fx-background-color: #e75151; -fx-background-radius: 30%; -fx-border-radius: 10%; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-background-insets: 0; -fx-font-weight: bold; -fx-font-size: 20;" text="Sair do jogo" textAlignment="CENTER" textFill="WHITE" />
    </children>
 </AnchorPane>
