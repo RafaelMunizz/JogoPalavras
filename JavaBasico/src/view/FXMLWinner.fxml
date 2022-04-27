@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="415.0" prefWidth="365.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="control.FXMLWinnerController">
+   <children>
+      <Label alignment="CENTER" layoutX="89.0" layoutY="65.0" prefHeight="83.0" prefWidth="188.0" text="WINNER">
+         <font>
+            <Font name="SansSerif Bold" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
