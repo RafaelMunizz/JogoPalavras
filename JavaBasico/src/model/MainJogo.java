@@ -11,15 +11,17 @@ public class MainJogo extends Application {
     
     @Override
     public void start(Stage stage)  throws Exception {
-        Parent Game = FXMLLoader.load(getClass().getResource("/view/FXMLGame.fxml"));
+        Parent initial = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
 
-        Scene sceneGame = new Scene(Game);
+        Scene sceneInitial = new Scene(initial);
 
-        stage.setScene(sceneGame);
+        stage.setScene(sceneInitial);
+        stage.setResizable(false);
+        stage.setTitle("Qual a palavra?");
         stage.show();
         
     }
-
+    
     /**
      * @param args the command line arguments
      */
