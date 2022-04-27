@@ -4,6 +4,8 @@ package control;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,10 +15,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Alertas;
+import model.EscolherPalavra;
 
 public class FXMLGameController implements Initializable {
     
@@ -70,27 +75,29 @@ public class FXMLGameController implements Initializable {
     Alertas alerta = new Alertas();
     int tentativasRestantes = 6;
     int totalAcertos = 0;
-    String palavraEscolhida = "seria";
+    String palavraEscolhida;
     
-    //SceneController
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
     
     @FXML
-    public void switchToInitial(ActionEvent event) throws IOException {
+    public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
+        
+        //SceneController
+        Stage stage;
+        Scene scene;
+        Parent root;
         
         root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
     
     @FXML
     void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
-        System.out.println(event);
+        System.out.println(this.palavraEscolhida);
         if (analisePalavra(txtField_DigitarPalavra.getText())){
             
             switch(this.tentativasRestantes){
@@ -147,7 +154,7 @@ public class FXMLGameController implements Initializable {
         return true;
     }
     // Método para colocar as letras nos labels correspondentes e chegar se o jogador venceu ou perdeu
-    void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
+    void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4) {
         
             char[] palavraRecebidaSeparada = txtField_DigitarPalavra.getText().toUpperCase().toCharArray();
             char[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().toCharArray();
@@ -161,7 +168,8 @@ public class FXMLGameController implements Initializable {
             txtField_DigitarPalavra.setText("");
             
             if(this.totalAcertos == 5){
-                //alerta.jogo_Ganhou();
+               alerta.jogo_Ganhou();
+               //showStage(); //Desenvolvendo
             }
             
             this.tentativasRestantes--;
@@ -209,10 +217,31 @@ public class FXMLGameController implements Initializable {
         }
         return verificacao;
     }
+    
+    // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
+    public void showStage(){
+        
+        Parent root;
+        try {
+            root = FXMLLoader.load(getClass().getClassLoader().getResource("/view/FXMLWinner.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("My New Stage Title");
+            stage.setScene(new Scene(root, 450, 450));
+            stage.show();
+            // Hide this current window (if this is what you want)
+            //((Node)(event.getSource())).getScene().getWindow().hide();
+        }
+        catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "DEU MERDA");
+        }
+    }
      
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
+        
+        EscolherPalavra p = new EscolherPalavra();
+        this.palavraEscolhida = p.palavraDefinitiva();
     }
 
 }
