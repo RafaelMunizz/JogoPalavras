@@ -3,9 +3,9 @@ package control;
 
 import java.io.IOException;
 import java.net.URL;
+import java.text.Normalizer;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,11 +13,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PopupControl;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Alertas;
@@ -75,8 +72,7 @@ public class FXMLGameController implements Initializable {
     Alertas alerta = new Alertas();
     int tentativasRestantes = 6;
     int totalAcertos = 0;
-    String palavraEscolhida;
-    
+    String palavraEscolhida = "seria";
     
     @FXML
     public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
@@ -95,9 +91,11 @@ public class FXMLGameController implements Initializable {
     }
     
     @FXML
-    void handleButtonAction_EnviarPalavra(ActionEvent event) {
+    public void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
         System.out.println(this.palavraEscolhida);
+
+
         if (analisePalavra(txtField_DigitarPalavra.getText())){
             
             switch(this.tentativasRestantes){
@@ -126,7 +124,7 @@ public class FXMLGameController implements Initializable {
     }
     
     // Método para analisar se a palavra tem 5 letras e não contém números
-    boolean analisePalavra(String p){
+    public boolean analisePalavra(String p){
         
         // Palavra maior que 5 caracteres
         if (p.length() != 5) {
@@ -154,68 +152,88 @@ public class FXMLGameController implements Initializable {
         return true;
     }
     // Método para colocar as letras nos labels correspondentes e chegar se o jogador venceu ou perdeu
-    void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4) {
+    public void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4) {
         
-            char[] palavraRecebidaSeparada = txtField_DigitarPalavra.getText().toUpperCase().toCharArray();
-            char[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().toCharArray();
+        this.totalAcertos = 0;
 
-            testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0, 0);
-            testeCaracteres(palavraRecebidaSeparada[1], palavraDefinitivaSeparada[1], lbl_1, 1);
-            testeCaracteres(palavraRecebidaSeparada[2], palavraDefinitivaSeparada[2], lbl_2, 2);
-            testeCaracteres(palavraRecebidaSeparada[3], palavraDefinitivaSeparada[3], lbl_3, 3);
-            testeCaracteres(palavraRecebidaSeparada[4], palavraDefinitivaSeparada[4], lbl_4, 4);
-            
-            txtField_DigitarPalavra.setText("");
-            
-            if(this.totalAcertos == 5){
-               alerta.jogo_Ganhou();
-               //showStage(); //Desenvolvendo
-            }
-            
+        // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
+        String[] palavraRecebidaSeparada = txtField_DigitarPalavra.getText().toUpperCase().split("");
+        String[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().split("");
+
+        testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0);
+        testeCaracteres(palavraRecebidaSeparada[1], palavraDefinitivaSeparada[1], lbl_1);
+        testeCaracteres(palavraRecebidaSeparada[2], palavraDefinitivaSeparada[2], lbl_2);
+        testeCaracteres(palavraRecebidaSeparada[3], palavraDefinitivaSeparada[3], lbl_3);
+        testeCaracteres(palavraRecebidaSeparada[4], palavraDefinitivaSeparada[4], lbl_4);
+
+        txtField_DigitarPalavra.setText("");
+
+        // Condição de vitória
+        // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
+        if(this.totalAcertos == 5){
+
+           lbl_0.setText(palavraDefinitivaSeparada[0]);
+           lbl_1.setText(palavraDefinitivaSeparada[1]);
+           lbl_2.setText(palavraDefinitivaSeparada[2]);
+           lbl_3.setText(palavraDefinitivaSeparada[3]);
+           lbl_4.setText(palavraDefinitivaSeparada[4]);
+
+           //alerta.jogo_Ganhou();
+           showStage(); //Desenvolvendo
+        } else {
+
             this.tentativasRestantes--;
             lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
-            
+
             if(this.tentativasRestantes == 0){
                 alerta.jogo_TentativasEsgotadas();
             }
+        }
     }
     
     // Método pada modificar os labels para a cor correspondente de ERRO, ACERTO ou SEMI-ACERTO (Possui a letra, mas não naquela posição)
-    void testeCaracteres(char letraRecebida, char letraDefinitiva, Label lbl, int indice){
+    public void testeCaracteres(String letraRecebida, String letraDefinitiva, Label lbl){
         
         // ACERTO
-        if (letraRecebida == letraDefinitiva){
-            lbl.setText(String.valueOf(letraRecebida));
+        if (removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva))){
+            lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
             this.totalAcertos++;
         
         // SEMI-ACERTO
-        } else if (letraRecebida != letraDefinitiva && letraNaPalavra_PosicaoErrada(letraRecebida)) {
-            lbl.setText(String.valueOf(letraRecebida));
+        } else if (!removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva)) && letraNaPalavra_PosicaoErrada(letraRecebida)) {
+            lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #D3AD69; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
         
         //ERRO
-        } else if (letraRecebida != letraDefinitiva && !letraNaPalavra_PosicaoErrada(letraRecebida)){
-            lbl.setText(String.valueOf(letraRecebida));
+        } else if (!removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva)) && !letraNaPalavra_PosicaoErrada(letraRecebida)){
+            lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #312A2C; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
         }
     }
     
     // Método para analisar se a letra pertence a palavra e ela não está no local correto
-    boolean letraNaPalavra_PosicaoErrada(char letra){
+    public boolean letraNaPalavra_PosicaoErrada(String letra){
         
         boolean verificacao = false; // Se verificacao mudar, a palavra possui a letra, mas ela não está na posição correta
-        char[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().toCharArray();
+        String[] palavraDefinitivaSeparada = removerAcentosStrings(this.palavraEscolhida.toUpperCase()).split("");
         
-        for (char c : palavraDefinitivaSeparada){
-            if (c == letra){
+        for (String c : palavraDefinitivaSeparada){
+            if (removerAcentosStrings(letra).equals(c)){
                 verificacao = true;
             } 
         }
         return verificacao;
+    }
+    
+    // Método para remover acentuações e sinais gráficos de uma String
+    public String removerAcentosStrings(String value) {
+        String normalizer = Normalizer.normalize(value, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(normalizer).replaceAll("");
     }
     
     // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
@@ -226,22 +244,28 @@ public class FXMLGameController implements Initializable {
             root = FXMLLoader.load(getClass().getClassLoader().getResource("/view/FXMLWinner.fxml"));
             Stage stage = new Stage();
             stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root, 450, 450));
+            stage.setScene(new Scene(root));
             stage.show();
             // Hide this current window (if this is what you want)
             //((Node)(event.getSource())).getScene().getWindow().hide();
         }
         catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "DEU MERDA");
+            JOptionPane.showMessageDialog(null, "NÃO FUNCIONOU");
         }
+    }
+    
+    // Método caso a pessoa acerte a palavra correta. 
+    // Criado para que palavras que possuem acentuação sejam colocadas com suas letras mantendo a formação original.
+    public void respostaCorreta(){
+        
     }
      
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
         
-        EscolherPalavra p = new EscolherPalavra();
-        this.palavraEscolhida = p.palavraDefinitiva();
+        //EscolherPalavra p = new EscolherPalavra();
+        //this.palavraEscolhida = p.palavraDefinitiva();
     }
 
 }
