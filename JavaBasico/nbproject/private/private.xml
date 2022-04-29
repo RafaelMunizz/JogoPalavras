@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/control/FXMLGameController.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/model/EscolherPalavra.java</file>
+            <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/view/FXMLWinner.fxml</file>
+            <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/control/FXMLWinnerController.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/model/MainJogo.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/model/Alertas.java</file>
             <file>file:/C:/Users/rafae/OneDrive/Documentos/GitHub/JogoPalavras/JavaBasico/src/view/FXMLInitial.fxml</file>
