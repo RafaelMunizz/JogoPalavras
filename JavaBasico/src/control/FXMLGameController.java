@@ -178,8 +178,8 @@ public class FXMLGameController implements Initializable {
            lbl_3.setText(palavraDefinitivaSeparada[3]);
            lbl_4.setText(palavraDefinitivaSeparada[4]);
 
-           //alerta.jogo_Ganhou();
-           showStage(); //Desenvolvendo
+           alerta.jogo_Ganhou();
+           //showStage(); //Desenvolvendo
         } else {
 
             this.tentativasRestantes--;
