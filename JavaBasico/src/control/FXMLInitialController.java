@@ -47,6 +47,11 @@ public class FXMLInitialController implements Initializable {
         stage.close();
     }
     
+        @FXML
+    void handleButtonAction_mudarParaCreditos(ActionEvent event) {
+
+    }
+    
     /**
      * Initializes the controller class.
      */
