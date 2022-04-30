@@ -21,7 +21,7 @@ public class MainJogo extends Application {
         stage.show();
         
     }
-    
+
     /**
      * @param args the command line arguments
      */
