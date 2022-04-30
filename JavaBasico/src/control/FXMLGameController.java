@@ -72,7 +72,7 @@ public class FXMLGameController implements Initializable {
     Alertas alerta = new Alertas();
     int tentativasRestantes = 6;
     int totalAcertos = 0;
-    String palavraEscolhida = "seria";
+    String palavraEscolhida;
     
     @FXML
     public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
@@ -254,18 +254,12 @@ public class FXMLGameController implements Initializable {
         }
     }
     
-    // Método caso a pessoa acerte a palavra correta. 
-    // Criado para que palavras que possuem acentuação sejam colocadas com suas letras mantendo a formação original.
-    public void respostaCorreta(){
-        
-    }
-     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
         
-        //EscolherPalavra p = new EscolherPalavra();
-        //this.palavraEscolhida = p.palavraDefinitiva();
+        EscolherPalavra p = new EscolherPalavra();
+        this.palavraEscolhida = p.palavraDefinitiva();
     }
 
 }
