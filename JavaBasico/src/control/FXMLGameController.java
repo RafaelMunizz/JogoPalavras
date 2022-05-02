@@ -13,8 +13,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Alertas;
@@ -67,12 +69,17 @@ public class FXMLGameController implements Initializable {
     //Demais itens
     @FXML private TextField txtField_DigitarPalavra;
     @FXML private Label lbl_Tentativas;
+    @FXML private Button btn_EnviarPalavra;
+    @FXML private Button btn_Desistir;
+
     
     // Variáveis
     Alertas alerta = new Alertas();
     int tentativasRestantes = 6;
     int totalAcertos = 0;
     String palavraEscolhida;
+    String btn_EnviarPalavra_Style;
+    String btn_Desistir_Style;
     
     @FXML
     public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
@@ -254,12 +261,48 @@ public class FXMLGameController implements Initializable {
         }
     }
     
+        
+    // Método para fazer transição de opacidade dos botões para dar efeito de pressão
+    void transicaoOpacidade (Button btn, String Style, Boolean mudar){
+        
+        // Se mudar for verdadeiro, a opacidade será aplicada
+        // se não for, o botão retornará ao estilo original
+        if (mudar){
+            btn.setStyle(Style + "-fx-opacity: 75%;");
+        } else {
+            btn.setStyle(Style);
+        }
+    }
+    
+    // btn_MudarPraJogo
+    @FXML 
+    void OnMouseEntered_btn_EnviarPalavra(MouseEvent event) {
+        transicaoOpacidade(btn_EnviarPalavra, this.btn_EnviarPalavra_Style, true);
+    }
+    
+    @FXML 
+    void OnMouseExited_btn_EnviarPalavra(MouseEvent event) {
+        transicaoOpacidade(btn_EnviarPalavra, this.btn_EnviarPalavra_Style, false);
+    }
+    
+    // btn_Fechar
+    @FXML 
+    void OnMouseEntered_btn_Desistir(MouseEvent event) {
+        transicaoOpacidade(btn_Desistir, this.btn_Desistir_Style, true);
+    }
+    @FXML 
+    void OnMouseExited_btn_Desistir(MouseEvent event) {
+        transicaoOpacidade(btn_Desistir, this.btn_Desistir_Style, false);
+    }
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
         
         EscolherPalavra p = new EscolherPalavra();
         this.palavraEscolhida = p.palavraDefinitiva();
+        
+        this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
+        this.btn_Desistir_Style = btn_Desistir.getStyle();
     }
-
 }
