@@ -46,7 +46,7 @@
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor></TextField>
-      <Button fx:id="btn_EnviarPalavra" contentDisplay="CENTER" layoutX="161.0" layoutY="690.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="46.0" prefWidth="152.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 17;" text="Enviar palavra" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btn_EnviarPalavra" contentDisplay="CENTER" layoutX="161.0" layoutY="690.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" onMouseEntered="#OnMouseEntered_btn_EnviarPalavra" onMouseExited="#OnMouseExited_btn_EnviarPalavra" prefHeight="46.0" prefWidth="152.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 17;" text="Enviar palavra" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="SansSerif" size="13.0" />
          </font>
@@ -55,7 +55,7 @@
          </cursor></Button>
       <Label layoutX="29.0" layoutY="782.0" prefHeight="36.0" prefWidth="106.0" style="-fx-font-size: 19; -fx-font: SansSerif; -fx-font-weight: bold;" text="Tentativas:" textAlignment="CENTER" textFill="#fafaff" />
       <Label fx:id="lbl_Tentativas" contentDisplay="CENTER" layoutX="135.0" layoutY="786.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 19; -fx-font: sans-serif; -fx-font-weight: bold;" text="6" textAlignment="CENTER" textFill="#fafaff" />
-      <Button fx:id="btn_Desistir" alignment="CENTER" contentDisplay="CENTER" layoutX="376.0" layoutY="776.0" mnemonicParsing="false" onAction="#handleButtonAction_voltarParaMenuInicial" prefHeight="28.0" prefWidth="81.0" style="-fx-border-radius: 30%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 16;" text="Sair" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btn_Desistir" alignment="CENTER" contentDisplay="CENTER" layoutX="376.0" layoutY="776.0" mnemonicParsing="false" onAction="#handleButtonAction_voltarParaMenuInicial" onMouseEntered="#OnMouseEntered_btn_Desistir" onMouseExited="#OnMouseExited_btn_Desistir" prefHeight="28.0" prefWidth="81.0" style="-fx-border-radius: 30%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 16;" text="Sair" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
