@@ -17,7 +17,7 @@
             <Font name="SansSerif" size="73.0" />
          </font>
       </Label>
-      <Button fx:id="btn_MudarPraMenu1" layoutX="138.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleButtonAction_VoltarParaMenu" prefHeight="35.0" prefWidth="199.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 20;" text="Voltar ao menu" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="btn_MudarPraMenu" layoutX="138.0" layoutY="709.0" mnemonicParsing="false" onAction="#handleButtonAction_VoltarParaMenu" onMouseEntered="#OnMouseEntered_btn_MudarPraMenu" onMouseExited="#OnMouseExited_btn_MudarPraMenu" prefHeight="35.0" prefWidth="199.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 20;" text="Voltar ao menu" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
