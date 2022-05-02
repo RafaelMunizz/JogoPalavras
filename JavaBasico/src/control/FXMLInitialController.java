@@ -95,44 +95,57 @@ public class FXMLInitialController implements Initializable {
         stageCreditos.show();
     }
     
+    // Método para fazer transição de opacidade dos botões para dar efeito de pressão
+    void transicaoOpacidade (Button btn, String Style, Boolean mudar){
+        
+        // Se mudar for verdadeiro, a opacidade será aplicada
+        // se não for, o botão retornará ao estilo original
+        if (mudar){
+            btn.setStyle(Style + "-fx-opacity: 75%;");
+        } else {
+            btn.setStyle(Style);
+        }
+    }
+    
     // btn_MudarPraJogo
     @FXML 
     void OnMouseEntered_btn_MudarPraJogo(MouseEvent event) {
-        btn_MudarPraJogo.setStyle(this.btn_MudarPraJogo_Style + "-fx-opacity: 75%;");
+        transicaoOpacidade(btn_MudarPraJogo, this.btn_MudarPraJogo_Style, true);
     }
+    
     @FXML 
     void OnMouseExited_btn_MudarPraJogo(MouseEvent event) {
-        btn_MudarPraJogo.setStyle(this.btn_MudarPraJogo_Style);
+        transicaoOpacidade(btn_MudarPraJogo, this.btn_MudarPraJogo_Style, false);
     }
     
     // btn_Fechar
     @FXML 
     void OnMouseEntered_btn_Fechar(MouseEvent event) {
-        btn_Fechar.setStyle(this.btn_Fechar_Style + "-fx-opacity: 75%;");
+        transicaoOpacidade(btn_Fechar, this.btn_Fechar_Style, true);
     }
     @FXML 
     void OnMouseExited_btn_Fechar(MouseEvent event) {
-        btn_Fechar.setStyle(this.btn_Fechar_Style);
+        transicaoOpacidade(btn_Fechar, this.btn_Fechar_Style, false);
     }
     
     // btn_MudarPraInstrucoes
     @FXML 
     void OnMouseEntered_btn_MudarPraInstrucoes(MouseEvent event) {
-        btn_MudarPraInstrucoes.setStyle(this.btn_MudarPraInstrucoes_Style + "-fx-opacity: 75%;");
+        transicaoOpacidade(btn_MudarPraInstrucoes, this.btn_MudarPraInstrucoes_Style, true);
     }
     @FXML 
     void OnMouseExited_btn_MudarPraInstrucoes(MouseEvent event) {
-        btn_MudarPraInstrucoes.setStyle(this.btn_MudarPraInstrucoes_Style);
+        transicaoOpacidade(btn_MudarPraInstrucoes, this.btn_MudarPraInstrucoes_Style, false);
     }
     
     // btn_MudarPraCreditos
     @FXML 
     void OnMouseEntered_btn_MudarPraCreditos(MouseEvent event) {
-        btn_MudarPraCreditos.setStyle(this.btn_MudarPraCreditos_Style + "-fx-opacity: 75%;");
+        transicaoOpacidade(btn_MudarPraCreditos, this.btn_MudarPraCreditos_Style, true);
     }
     @FXML 
     void OnMouseExited_btn_MudarPraCreditos(MouseEvent event) {
-        btn_MudarPraCreditos.setStyle(this.btn_MudarPraCreditos_Style);
+        transicaoOpacidade(btn_MudarPraCreditos, this.btn_MudarPraCreditos_Style, false);
     }
     
     @Override
