@@ -46,14 +46,26 @@ public class FXMLInstructionsController implements Initializable {
         stage.show();
     }
     
+    // Método para fazer transição de opacidade dos botões para dar efeito de pressão
+    void transicaoOpacidade (Button btn, String Style, Boolean mudar){
+        
+        // Se mudar for verdadeiro, a opacidade será aplicada
+        // se não for, o botão retornará ao estilo original
+        if (mudar){
+            btn.setStyle(Style + "-fx-opacity: 75%;");
+        } else {
+            btn.setStyle(Style);
+        }
+    }
+    
     // btn_MudarPraMenu
     @FXML 
     void OnMouseEntered_btn_MudarPraMenu(MouseEvent event) {
-        btn_MudarPraMenu.setStyle(this.btn_MudarPraMenu_Style + "-fx-opacity: 75%;");
+        transicaoOpacidade(btn_MudarPraMenu, this.btn_MudarPraMenu_Style, true);
     }
     @FXML 
     void OnMouseExited_btn_MudarPraMenu(MouseEvent event) {
-        btn_MudarPraMenu.setStyle(this.btn_MudarPraMenu_Style);
+        transicaoOpacidade(btn_MudarPraMenu, this.btn_MudarPraMenu_Style, false);
     }
     
     @Override
