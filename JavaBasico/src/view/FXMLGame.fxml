@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -38,16 +39,25 @@
       <Label fx:id="lbl_52" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="200.0" layoutY="455.0" prefHeight="70.0" prefWidth="70.0" style="-fx-border-radius: 10%; -fx-background-color: transparent; -fx-border-color: #4C4347; -fx-font-size: 46; -fx-font: sans-serif; -fx-border-width: 5; -fx-font-weight: bold;" textAlignment="CENTER" textFill="#fafaff" textOverrun="CLIP" />
       <Label fx:id="lbl_53" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="280.0" layoutY="455.0" prefHeight="70.0" prefWidth="70.0" style="-fx-border-radius: 10%; -fx-background-color: transparent; -fx-border-color: #4C4347; -fx-font-size: 46; -fx-font: sans-serif; -fx-border-width: 5; -fx-font-weight: bold;" textAlignment="CENTER" textFill="#fafaff" textOverrun="CLIP" />
       <Label fx:id="lbl_54" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="360.0" layoutY="455.0" prefHeight="70.0" prefWidth="70.0" style="-fx-border-radius: 10%; -fx-background-color: transparent; -fx-border-color: #4C4347; -fx-font-size: 46; -fx-font: sans-serif; -fx-border-width: 5; -fx-font-weight: bold;" textAlignment="CENTER" textFill="#fafaff" textOverrun="CLIP" />
-      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="83.0" layoutY="602.0" prefHeight="63.0" prefWidth="309.0" promptText="Digite a palavra" style="-fx-background-color: transparent; -fx-border-radius: 10%; -fx-border-color: #4c4347; -fx-border-width: 5; -fx-font: sans-serif; -fx-text-fill: #fafaff;">
+      <TextField fx:id="txtField_DigitarPalavra" alignment="CENTER" layoutX="83.0" layoutY="602.0" onAction="#handleButtonAction_EnviarPalavra" prefHeight="63.0" prefWidth="309.0" promptText="Digite a palavra" style="-fx-background-color: transparent; -fx-border-radius: 10%; -fx-border-color: #4c4347; -fx-border-width: 5; -fx-font: sans-serif; -fx-text-fill: #fafaff;">
          <font>
             <Font name="SansSerif Bold" size="27.0" />
-         </font></TextField>
-      <Button fx:id="btn_EnviarPalavra" contentDisplay="CENTER" layoutX="161.0" layoutY="690.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="46.0" prefWidth="152.0" style="-fx-background-color: #528560; -fx-background-radius: 30%; -fx-border-radius: 10%; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-background-insets: 0; -fx-font-weight: bold; -fx-font-size: 17;" text="Enviar palavra" textAlignment="CENTER" textFill="WHITE">
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor></TextField>
+      <Button fx:id="btn_EnviarPalavra" contentDisplay="CENTER" layoutX="161.0" layoutY="690.0" mnemonicParsing="false" onAction="#handleButtonAction_EnviarPalavra" prefHeight="46.0" prefWidth="152.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 17;" text="Enviar palavra" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="SansSerif" size="13.0" />
-         </font></Button>
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
       <Label layoutX="29.0" layoutY="782.0" prefHeight="36.0" prefWidth="106.0" style="-fx-font-size: 19; -fx-font: SansSerif; -fx-font-weight: bold;" text="Tentativas:" textAlignment="CENTER" textFill="#fafaff" />
       <Label fx:id="lbl_Tentativas" contentDisplay="CENTER" layoutX="135.0" layoutY="786.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 19; -fx-font: sans-serif; -fx-font-weight: bold;" text="6" textAlignment="CENTER" textFill="#fafaff" />
-      <Button fx:id="btn_Desistir" layoutX="376.0" layoutY="776.0" mnemonicParsing="false" onAction="#handleButtonAction_voltarParaMenuInicial" prefHeight="28.0" prefWidth="81.0" style="-fx-background-color: #e75151; -fx-background-radius: 50%; -fx-border-radius: 30%; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-background-insets: 0; -fx-font-weight: bold; -fx-font-size: 16;" text="Sair" textAlignment="CENTER" textFill="WHITE" />
+      <Button fx:id="btn_Desistir" alignment="CENTER" contentDisplay="CENTER" layoutX="376.0" layoutY="776.0" mnemonicParsing="false" onAction="#handleButtonAction_voltarParaMenuInicial" prefHeight="28.0" prefWidth="81.0" style="-fx-border-radius: 30%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 16;" text="Sair" textAlignment="CENTER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
     </children>
 </AnchorPane>
