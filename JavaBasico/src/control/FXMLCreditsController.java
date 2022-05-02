@@ -18,7 +18,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -28,6 +28,12 @@ import javafx.stage.Stage;
  */
 public class FXMLCreditsController implements Initializable {
 
+    @FXML
+    private Button btn_MudarPraMenu;
+
+    // Outros
+    String btn_MudarPraMenu_Style;
+        
     @FXML
     void handleButtonAction_VoltarParaMenu(ActionEvent event) throws IOException {
               
@@ -66,9 +72,32 @@ public class FXMLCreditsController implements Initializable {
         
         Desktop.getDesktop().browse(new URI ("https://term.ooo/"));
     }
+    
+    // Método para fazer transição de opacidade dos botões para dar efeito de pressão
+    void transicaoOpacidade (Button btn, String Style, Boolean mudar){
+        
+        // Se mudar for verdadeiro, a opacidade será aplicada
+        // se não for, o botão retornará ao estilo original
+        if (mudar){
+            btn.setStyle(Style + "-fx-opacity: 75%;");
+        } else {
+            btn.setStyle(Style);
+        }
+    }
+        
+    // btn_MudarPraMenu
+    @FXML 
+    void OnMouseEntered_btn_MudarPraMenu(MouseEvent event) {
+        transicaoOpacidade(btn_MudarPraMenu, this.btn_MudarPraMenu_Style, true);
+    }
+    @FXML 
+    void OnMouseExited_btn_MudarPraMenu(MouseEvent event) {
+        transicaoOpacidade(btn_MudarPraMenu, this.btn_MudarPraMenu_Style, false);
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        this.btn_MudarPraMenu_Style = btn_MudarPraMenu.getStyle();
     }    
     
 }
