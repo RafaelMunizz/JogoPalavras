@@ -11,7 +11,7 @@ A proposta é ter um jogo desktop offline onde o(a) usuário(a) não fica limita
 # Telas do jogo:
  
  ## Tela inicial
-![image](https://user-images.githubusercontent.com/58229800/166181146-945adca4-9c73-47a8-a798-37d3b4f62d7a.png)
+![image](https://user-images.githubusercontent.com/58229800/166390686-05104de7-08a6-4293-abb4-cc72f331c2c3.png)
 ## Instruções do jogo
 ![image](https://user-images.githubusercontent.com/58229800/166181148-2e5f147d-6941-4ce9-ba5c-976a8d27dec0.png)
 ## Créditos do jogo
