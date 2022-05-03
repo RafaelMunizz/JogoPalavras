@@ -5,8 +5,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -159,7 +162,7 @@ public class FXMLGameController implements Initializable {
         return true;
     }
     // Método para colocar as letras nos labels correspondentes e chegar se o jogador venceu ou perdeu
-    public void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4) {
+    public void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
         
         this.totalAcertos = 0;
 
@@ -185,15 +188,16 @@ public class FXMLGameController implements Initializable {
            lbl_3.setText(palavraDefinitivaSeparada[3]);
            lbl_4.setText(palavraDefinitivaSeparada[4]);
 
-           alerta.jogo_Ganhou();
+           alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
            //showStage(); //Desenvolvendo
+            
         } else {
 
             this.tentativasRestantes--;
             lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
 
             if(this.tentativasRestantes == 0){
-                alerta.jogo_TentativasEsgotadas();
+                alerta.jogo_TentativasEsgotadas(this.palavraEscolhida.toUpperCase());
             }
         }
     }
@@ -244,21 +248,22 @@ public class FXMLGameController implements Initializable {
     }
     
     // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
-    public void showStage(){
+    public void showStage() throws IOException{
         
-        Parent root;
-        try {
-            root = FXMLLoader.load(getClass().getClassLoader().getResource("/view/FXMLWinner.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("My New Stage Title");
-            stage.setScene(new Scene(root));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node)(event.getSource())).getScene().getWindow().hide();
-        }
-        catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "NÃO FUNCIONOU");
-        }
+        Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLCredits.fxml"));
+        Scene scene = new Scene(root, 320, 200);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        
+        /*
+        root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+        */
     }
     
         
