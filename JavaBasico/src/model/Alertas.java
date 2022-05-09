@@ -21,6 +21,13 @@ public class Alertas {
         this.alertERROR.setContentText("A entrada deve conter CINCO caractéres!"); //Conteúdo
         this.alertERROR.show();
     }
+    
+    public void entrada_NaoContemNoBanco(){
+        this.alertERROR.setTitle("Erro de entrada"); //Título
+        this.alertERROR.setHeaderText("Entrada inválida"); //Cabeçalho
+        this.alertERROR.setContentText("Palavra não conhecida. Digite outra palavra!"); //Conteúdo
+        this.alertERROR.show();
+    }
 
     public void jogo_TentativasEsgotadas(String palavraCorreta){
         this.alertERROR.setTitle("Jogo finalizado"); //Título
@@ -35,6 +42,5 @@ public class Alertas {
         this.alertERROR.setContentText("VOCÊ VENCEU O JOGO!\nA palavra correta era: " + palavraCorreta); //Conteúdo
         this.alertERROR.show();
     }
-    
     
 }
