@@ -9,12 +9,6 @@ public class Alertas {
     Alert alertCONFIRMATION = new Alert(Alert.AlertType.CONFIRMATION);
     Alert alertERROR = new Alert(Alert.AlertType.ERROR);
     
-    public void entrada_ComNumerosOuSimbolos(){
-        this.alertERROR.setTitle("Erro de entrada"); //Título
-        this.alertERROR.setHeaderText("Entrada inválida"); //Cabeçalho
-        this.alertERROR.setContentText("A entrada só pode conter letras!"); //Conteúdo
-        this.alertERROR.show();
-    }
     public void entrada_MaiorOuMenorQueCincoCaracteres(){
         this.alertERROR.setTitle("Erro de entrada"); //Título
         this.alertERROR.setHeaderText("Entrada inválida"); //Cabeçalho
