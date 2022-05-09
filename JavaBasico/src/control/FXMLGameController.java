@@ -5,11 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -21,9 +18,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import model.Alertas;
-import model.EscolherPalavra;
+import model.BancoPalavras;
 
 public class FXMLGameController implements Initializable {
     
@@ -78,6 +74,8 @@ public class FXMLGameController implements Initializable {
     
     // Variáveis
     Alertas alerta = new Alertas();
+    BancoPalavras BP = new BancoPalavras();
+    
     int tentativasRestantes = 6;
     int totalAcertos = 0;
     String palavraEscolhida;
@@ -104,10 +102,10 @@ public class FXMLGameController implements Initializable {
     public void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
         System.out.println(this.palavraEscolhida);
-
-
+        
+        // Verificação se a palavra é válida 
         if (analisePalavra(txtField_DigitarPalavra.getText())){
-            
+
             switch(this.tentativasRestantes){
                 case 6:
                     colocarPalavras(lbl_00,lbl_01,lbl_02,lbl_03,lbl_04);
@@ -136,26 +134,16 @@ public class FXMLGameController implements Initializable {
     // Método para analisar se a palavra tem 5 letras e não contém números
     public boolean analisePalavra(String p){
         
-        // Palavra maior que 5 caracteres
+        // Palavra maior ou menor que 5 caracteres
         if (p.length() != 5) {
             alerta.entrada_MaiorOuMenorQueCincoCaracteres();
             txtField_DigitarPalavra.setText("");
             return false;
         }
         
-        // Palavra contendo algo diferente de letras
-        boolean verificacao = true; // Se verificacao mudar, a entrada não contém somente letras
-        char[] chars = p.toCharArray();
-        
-        for (char c : chars){
-            if (!Character.isLetter(c)){
-                verificacao = false;
-            } 
-        }
-        
-        if (verificacao == false){
-            alerta.entrada_ComNumerosOuSimbolos();
-            txtField_DigitarPalavra.setText("");
+        // Avaliando se a palavra pertence ao banco. Se não pertencer, o jogador deve digitar outra palavra válida
+        if (!BP.palavraValida(txtField_DigitarPalavra.getText())){
+            alerta.entrada_NaoContemNoBanco();
             return false;
         }
         
@@ -165,9 +153,13 @@ public class FXMLGameController implements Initializable {
     public void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
         
         this.totalAcertos = 0;
+        
+        // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
+        String palavra = BP.palavraFormaFinal(txtField_DigitarPalavra.getText());
+        //String palavra = txtField_DigitarPalavra.getText();
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
-        String[] palavraRecebidaSeparada = txtField_DigitarPalavra.getText().toUpperCase().split("");
+        String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
         String[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().split("");
 
         testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0);
@@ -181,12 +173,6 @@ public class FXMLGameController implements Initializable {
         // Condição de vitória
         // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
         if(this.totalAcertos == 5){
-
-           lbl_0.setText(palavraDefinitivaSeparada[0]);
-           lbl_1.setText(palavraDefinitivaSeparada[1]);
-           lbl_2.setText(palavraDefinitivaSeparada[2]);
-           lbl_3.setText(palavraDefinitivaSeparada[3]);
-           lbl_4.setText(palavraDefinitivaSeparada[4]);
 
            alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
            //showStage(); //Desenvolvendo
@@ -202,7 +188,7 @@ public class FXMLGameController implements Initializable {
         }
     }
     
-    // Método pada modificar os labels para a cor correspondente de ERRO, ACERTO ou SEMI-ACERTO (Possui a letra, mas não naquela posição)
+    // Método para modificar os labels para a cor correspondente de ERRO, ACERTO ou SEMI-ACERTO (Possui a letra, mas não naquela posição)
     public void testeCaracteres(String letraRecebida, String letraDefinitiva, Label lbl){
         
         // ACERTO
@@ -304,7 +290,7 @@ public class FXMLGameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
         
-        EscolherPalavra p = new EscolherPalavra();
+        BancoPalavras p = new BancoPalavras();
         this.palavraEscolhida = p.palavraDefinitiva();
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
