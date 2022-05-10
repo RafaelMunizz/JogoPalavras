@@ -53,6 +53,7 @@ public class FXMLInitialController implements Initializable {
         stageJogo = (Stage)((Node)event.getSource()).getScene().getWindow();
         sceneJogo = new Scene(rootJogo);
         stageJogo.setScene(sceneJogo);
+        stageJogo.setTitle("Qual a palavra?/Partida");
         stageJogo.setResizable(false);
         stageJogo.show();
     
@@ -67,7 +68,7 @@ public class FXMLInitialController implements Initializable {
     
     @FXML
     public void handleButtonAction_mudarParaCreditos(ActionEvent event) throws IOException {
-       
+        
         Stage stageCreditos;
         Scene sceneCreditos;
         Parent rootCreditos;
@@ -76,6 +77,7 @@ public class FXMLInitialController implements Initializable {
         stageCreditos = (Stage)((Node)event.getSource()).getScene().getWindow();
         sceneCreditos = new Scene(rootCreditos);
         stageCreditos.setScene(sceneCreditos);
+        stageCreditos.setTitle("Qual a palavra?/Créditos");
         stageCreditos.setResizable(false);
         stageCreditos.show();
     }
@@ -83,16 +85,17 @@ public class FXMLInitialController implements Initializable {
     @FXML
     public void handleButtonAction_mudarParaInstrucoes(ActionEvent event) throws IOException {
        
-        Stage stageCreditos;
-        Scene sceneCreditos;
-        Parent rootCreditos;
+        Stage stageInstrucoes;
+        Scene sceneInstrucoes;
+        Parent rootInstrucoes;
         
-        rootCreditos = FXMLLoader.load(getClass().getResource("/view/FXMLInstructions.fxml"));
-        stageCreditos = (Stage)((Node)event.getSource()).getScene().getWindow();
-        sceneCreditos = new Scene(rootCreditos);
-        stageCreditos.setScene(sceneCreditos);
-        stageCreditos.setResizable(false);
-        stageCreditos.show();
+        rootInstrucoes = FXMLLoader.load(getClass().getResource("/view/FXMLInstructions.fxml"));
+        stageInstrucoes = (Stage)((Node)event.getSource()).getScene().getWindow();
+        sceneInstrucoes = new Scene(rootInstrucoes);
+        stageInstrucoes.setScene(sceneInstrucoes);
+        stageInstrucoes.setTitle("Qual a palavra?/Instruções");
+        stageInstrucoes.setResizable(false);
+        stageInstrucoes.show();
     }
     
     // Método para fazer transição de opacidade dos botões para dar efeito de pressão
