@@ -51,6 +51,9 @@ public class BancoPalavras {
         novaListaPalavras.put("iamos", "íamos");
         novaListaPalavras.put("prego", "prego");
         novaListaPalavras.put("prega", "prega");
+        novaListaPalavras.put("amora", "amora");
+        novaListaPalavras.put("rotas", "rotas");
+        novaListaPalavras.put("fases", "fases");
         
         
         novaListaPalavras.put("sagaz", "sagaz");
