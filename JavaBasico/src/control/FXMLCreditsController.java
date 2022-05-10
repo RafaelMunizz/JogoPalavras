@@ -45,6 +45,7 @@ public class FXMLCreditsController implements Initializable {
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setTitle("Qual a palavra?/Menu principal");
         stage.setResizable(false);
         stage.show();
     }
