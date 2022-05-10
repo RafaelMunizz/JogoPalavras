@@ -18,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import model.Alertas;
 import model.BancoPalavras;
 
@@ -81,10 +82,22 @@ public class FXMLGameController implements Initializable {
     String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
+
+    // Getters
+    public int getTentativasRestantes() {
+        return this.tentativasRestantes;
+    }
+
+    public String getPalavraEscolhida() {
+        return this.palavraEscolhida;
+    }
+    ///////////////////////////////////////////////////////////
+    
     
     @FXML
     public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
         
+        // event = javafx.event.ActionEvent[source=Button[id=btn_Desistir, styleClass=button]'Sair']
         //SceneController
         Stage stage;
         Scene scene;
@@ -92,6 +105,29 @@ public class FXMLGameController implements Initializable {
         
         root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setTitle("Qual a palavra?/Menu principal");
+        stage.setResizable(false);
+        stage.show();
+    }
+    
+    // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
+    @FXML
+    public void telaFimDeJogo() throws IOException{
+        
+        //SceneController
+        Stage stage;
+        Scene scene;
+        Parent root;
+        
+        stage = (Stage) btn_Desistir.getScene().getWindow();
+        stage.close();
+        
+        root = FXMLLoader.load(getClass().getResource("/view/FXMLWinner.fxml"));
+        
+        stage = new Stage();
+        stage.setTitle("Qual a palavra?/Fim de jogo");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
@@ -144,6 +180,7 @@ public class FXMLGameController implements Initializable {
         // Avaliando se a palavra pertence ao banco. Se não pertencer, o jogador deve digitar outra palavra válida
         if (!BP.palavraValida(txtField_DigitarPalavra.getText())){
             alerta.entrada_NaoContemNoBanco();
+            txtField_DigitarPalavra.setText("");
             return false;
         }
         
@@ -174,8 +211,12 @@ public class FXMLGameController implements Initializable {
         // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
         if(this.totalAcertos == 5){
 
-           alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
-           //showStage(); //Desenvolvendo
+            try {
+                //alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
+                telaFimDeJogo(); //Desenvolvendo
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, "Deu Ruim:" + ex);
+            }
             
         } else {
 
@@ -232,26 +273,6 @@ public class FXMLGameController implements Initializable {
         Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
         return pattern.matcher(normalizer).replaceAll("");
     }
-    
-    // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
-    public void showStage() throws IOException{
-        
-        Parent root = FXMLLoader.load(getClass().getResource("/view/FXMLCredits.fxml"));
-        Scene scene = new Scene(root, 320, 200);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        
-        /*
-        root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.show();
-        */
-    }
-    
         
     // Método para fazer transição de opacidade dos botões para dar efeito de pressão
     void transicaoOpacidade (Button btn, String Style, Boolean mudar){
