@@ -44,7 +44,7 @@
                   <Font name="SansSerif Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="19.0" layoutY="631.0" prefHeight="66.0" prefWidth="418.0" text="Os acentos não são preenchidos automaticamente." textAlignment="CENTER" textFill="WHITE" wrapText="true">
+            <Label layoutX="19.0" layoutY="631.0" prefHeight="66.0" prefWidth="403.0" text="Os acentos são preenchidos automaticamente." textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font name="SansSerif Bold" size="18.0" />
                </font>
