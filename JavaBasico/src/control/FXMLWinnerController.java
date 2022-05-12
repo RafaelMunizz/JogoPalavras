@@ -130,6 +130,6 @@ public class FXMLWinnerController implements Initializable {
         this.lbl_2.setText(letrasSeparadas[2]);
         this.lbl_3.setText(letrasSeparadas[3]);
         this.lbl_4.setText(letrasSeparadas[4]);
-        this.lbl_tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
+        this.lbl_tentativas.setText(String.valueOf(7 - FXMLGameController.tentativasRestantes));
     }    
 }
