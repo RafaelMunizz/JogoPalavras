@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="837.0" maxWidth="474.0" minHeight="837.0" minWidth="474.0" prefHeight="837.0" prefWidth="474.0" style="-fx-background-color: #6e5c62; -fx-background-radius: 0; -fx-border-radius: 0; -fx-border-color: #4c4347; -fx-border-width: 7; -fx-background-insets: 0;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="control.FXMLLoserController">
+   <children>
+        <Label contentDisplay="CENTER" layoutX="24.0" layoutY="54.0" prefHeight="270.0" prefWidth="427.0" text="Infelizmente você não acertou a palavra!" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="SansSerif Bold" size="57.0" />
+         </font></Label>
+        <Label contentDisplay="CENTER" layoutX="41.0" layoutY="363.0" prefHeight="41.0" prefWidth="279.0" text="A palavra correta era:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="SansSerif Bold" size="25.0" />
+         </font></Label>
+        <Label fx:id="lbl_0" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="41.0" layoutY="409.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="121.0" layoutY="409.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_2" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="201.0" layoutY="409.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_3" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="281.0" layoutY="409.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_4" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="361.0" layoutY="409.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+      <Button fx:id="btn_MudarPraJogo" layoutX="97.0" layoutY="592.0" mnemonicParsing="false" onAction="#handleButtonAction_mudarParaJogo" onMouseEntered="#OnMouseEntered_btn_MudarPraJogo" onMouseExited="#OnMouseExited_btn_MudarPraJogo" prefHeight="77.0" prefWidth="279.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #528560; -fx-border-color: #4c4347; -fx-border-width: 4.5; -fx-font-weight: bold; -fx-font-size: 25;" text="Jogar novamente" textAlignment="CENTER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Button fx:id="btn_MudarPraMenu" layoutX="138.0" layoutY="699.0" mnemonicParsing="false" onAction="#handleButtonAction_VoltarParaMenu" onMouseEntered="#OnMouseEntered_btn_MudarPraMenu" onMouseExited="#OnMouseExited_btn_MudarPraMenu" prefHeight="35.0" prefWidth="199.0" style="-fx-border-radius: 20%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 20;" text="Voltar ao menu" textAlignment="CENTER" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+   </children>
+</AnchorPane>
