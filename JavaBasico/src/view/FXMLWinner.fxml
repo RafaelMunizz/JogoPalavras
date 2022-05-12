@@ -16,17 +16,17 @@
          <font>
             <Font name="SansSerif Bold" size="25.0" />
          </font></Label>
-        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="41.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
-        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="121.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
-        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="201.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
-        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="281.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
-        <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="361.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_0" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="41.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="121.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_2" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="201.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_3" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="281.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
+        <Label fx:id="lbl_4" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="0.0" layoutX="361.0" layoutY="357.0" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;" text="?" />
       <Label contentDisplay="CENTER" layoutX="41.0" layoutY="451.0" prefHeight="41.0" prefWidth="300.0" text="Quantidade de tentativas:" textAlignment="CENTER" textFill="WHITE" wrapText="true">
          <font>
             <Font name="SansSerif Bold" size="24.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="453.0" prefHeight="41.0" prefWidth="28.0" text="?" textFill="WHITE">
+      <Label fx:id="lbl_tentativas" alignment="CENTER" contentDisplay="CENTER" layoutX="337.0" layoutY="453.0" prefHeight="41.0" prefWidth="28.0" text="?" textFill="WHITE">
          <font>
             <Font name="SansSerif Bold" size="23.0" />
          </font>
