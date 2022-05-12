@@ -1,6 +1,6 @@
 # Qual a palavra?
 
- - Versão em fase final de desenvolvimento de um jogo desktop desenvolvido em JavaFX.
+ - Versão final de desenvolvimento de um jogo desktop desenvolvido em JavaFX.
 
 ## Funcionamento:
  
@@ -13,16 +13,18 @@ A proposta é ter um jogo desktop offline onde o(a) usuário(a) não fica limita
  ## Tela inicial
 ![image](https://user-images.githubusercontent.com/58229800/166390686-05104de7-08a6-4293-abb4-cc72f331c2c3.png)
 ## Instruções do jogo
-![image](https://user-images.githubusercontent.com/58229800/166181148-2e5f147d-6941-4ce9-ba5c-976a8d27dec0.png)
+![image](https://user-images.githubusercontent.com/58229800/168149925-526fb99c-1a77-4362-b0c9-54c451139f69.png)
 ## Créditos do jogo
 ![image](https://user-images.githubusercontent.com/58229800/166181149-e791ded4-8b73-421c-b1e4-82bcb88fe45e.png)
 ## Tela do início do jogo
 ![image](https://user-images.githubusercontent.com/58229800/166181151-243f392b-4391-4a20-ae32-dea060320738.png)
 ## Exemplo de uma partida no jogo
 ![image](https://user-images.githubusercontent.com/58229800/166181463-9e0a0700-9ed2-4acb-b619-ba61aabb782b.png)
+## Exemplo de tela de vitória
+![image](https://user-images.githubusercontent.com/58229800/168150521-a23455c6-a176-4ea1-9212-8ca85e2923e6.png)
+## Exemplo de tela de derrota
+![image](https://user-images.githubusercontent.com/58229800/168150309-c891341b-abf4-4b3c-974a-487ca757e00e.png)
 
-# Atualizações futuras
+# Atualizações futuras 
 
-Como já mencionado acima, o projeto está em sua fase final e ainda necessita de algumas melhorias para uma experiência completa de jogo, mas mesmo em sua fase atual, se encontra jogável. 
-
-Como melhorias futuras, são planejadas adições de mais telas e alguns recursos na partida para tornar o jogo mais fiel a sua inspiração e mais desafiador.
+Como melhorias futuras, são planejadas adições de alguns recursos na partida para tornar o jogo mais desafiador e duradouro, com várias partidas seguidas e pontuação ao final.
