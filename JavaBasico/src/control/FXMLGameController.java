@@ -75,11 +75,11 @@ public class FXMLGameController implements Initializable {
     
     // Variáveis
     Alertas alerta = new Alertas();
-    BancoPalavras BP = new BancoPalavras();
+    BancoPalavras BP = new BancoPalavras(true);
     
-    int tentativasRestantes = 6;
+    static int tentativasRestantes;
     int totalAcertos = 0;
-    String palavraEscolhida;
+    static String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
 
@@ -87,11 +87,9 @@ public class FXMLGameController implements Initializable {
     public int getTentativasRestantes() {
         return this.tentativasRestantes;
     }
-
-    public String getPalavraEscolhida() {
-        return this.palavraEscolhida;
-    }
+    
     ///////////////////////////////////////////////////////////
+
     
     
     @FXML
@@ -311,10 +309,10 @@ public class FXMLGameController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
         
-        BancoPalavras p = new BancoPalavras();
-        this.palavraEscolhida = p.palavraDefinitiva();
+        this.palavraEscolhida = BP.getPalavraEscolhida();
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
         this.btn_Desistir_Style = btn_Desistir.getStyle();
+        FXMLGameController.tentativasRestantes = 6;
     }
 }
