@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -18,7 +20,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import model.Alertas;
 import model.BancoPalavras;
 
@@ -77,21 +78,12 @@ public class FXMLGameController implements Initializable {
     Alertas alerta = new Alertas();
     BancoPalavras BP = new BancoPalavras(true);
     
-    static int tentativasRestantes;
+    static int tentativasRestantes = 6;
     int totalAcertos = 0;
     static String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
 
-    // Getters
-    public int getTentativasRestantes() {
-        return this.tentativasRestantes;
-    }
-    
-    ///////////////////////////////////////////////////////////
-
-    
-    
     @FXML
     public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
         
@@ -110,9 +102,9 @@ public class FXMLGameController implements Initializable {
         stage.show();
     }
     
-    // Método para chamar uma tela de que o jogador ganhou o jogo (desenvolvendo)
+    // Método para chamar uma tela de que o jogador ganhou o jogo 
     @FXML
-    public void telaFimDeJogo() throws IOException{
+    public void telaVitoria() throws IOException{
         
         //SceneController
         Stage stage;
@@ -125,7 +117,29 @@ public class FXMLGameController implements Initializable {
         root = FXMLLoader.load(getClass().getResource("/view/FXMLWinner.fxml"));
         
         stage = new Stage();
-        stage.setTitle("Qual a palavra?/Fim de jogo");
+        stage.setTitle("Qual a palavra?/Vitória");
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+    
+    // Método para chamar uma tela de que o jogador ganhou o jogo 
+    @FXML
+    public void telaDerrota() throws IOException{
+        
+        //SceneController
+        Stage stage;
+        Scene scene;
+        Parent root;
+        
+        stage = (Stage) btn_Desistir.getScene().getWindow();
+        stage.close();
+        
+        root = FXMLLoader.load(getClass().getResource("/view/FXMLLoser.fxml"));
+        
+        stage = new Stage();
+        stage.setTitle("Qual a palavra?/Derrota");
         scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
@@ -135,12 +149,12 @@ public class FXMLGameController implements Initializable {
     @FXML
     public void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
-        System.out.println(this.palavraEscolhida);
+        System.out.println(FXMLGameController.palavraEscolhida);
         
         // Verificação se a palavra é válida 
         if (analisePalavra(txtField_DigitarPalavra.getText())){
 
-            switch(this.tentativasRestantes){
+            switch(FXMLGameController.tentativasRestantes){
                 case 6:
                     colocarPalavras(lbl_00,lbl_01,lbl_02,lbl_03,lbl_04);
                     break;
@@ -195,7 +209,7 @@ public class FXMLGameController implements Initializable {
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
         String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
-        String[] palavraDefinitivaSeparada = this.palavraEscolhida.toUpperCase().split("");
+        String[] palavraDefinitivaSeparada = FXMLGameController.palavraEscolhida.toUpperCase().split("");
 
         testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0);
         testeCaracteres(palavraRecebidaSeparada[1], palavraDefinitivaSeparada[1], lbl_1);
@@ -211,18 +225,22 @@ public class FXMLGameController implements Initializable {
 
             try {
                 //alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
-                telaFimDeJogo(); //Desenvolvendo
+                telaVitoria(); //Desenvolvendo
             } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Deu Ruim:" + ex);
+                Logger.getLogger(FXMLGameController.class.getName()).log(Level.SEVERE, null, ex);
             }
             
         } else {
 
-            this.tentativasRestantes--;
-            lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
+            FXMLGameController.tentativasRestantes--;
+            lbl_Tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
 
-            if(this.tentativasRestantes == 0){
-                alerta.jogo_TentativasEsgotadas(this.palavraEscolhida.toUpperCase());
+            if(FXMLGameController.tentativasRestantes == 0){
+                try {
+                    telaDerrota();
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLGameController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }
     }
@@ -255,7 +273,7 @@ public class FXMLGameController implements Initializable {
     public boolean letraNaPalavra_PosicaoErrada(String letra){
         
         boolean verificacao = false; // Se verificacao mudar, a palavra possui a letra, mas ela não está na posição correta
-        String[] palavraDefinitivaSeparada = removerAcentosStrings(this.palavraEscolhida.toUpperCase()).split("");
+        String[] palavraDefinitivaSeparada = removerAcentosStrings(FXMLGameController.palavraEscolhida.toUpperCase()).split("");
         
         for (String c : palavraDefinitivaSeparada){
             if (removerAcentosStrings(letra).equals(c)){
@@ -307,12 +325,12 @@ public class FXMLGameController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lbl_Tentativas.setText(String.valueOf(this.tentativasRestantes));
+        FXMLGameController.tentativasRestantes = 6;
+        lbl_Tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
         
-        this.palavraEscolhida = BP.getPalavraEscolhida();
+        FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
         this.btn_Desistir_Style = btn_Desistir.getStyle();
-        FXMLGameController.tentativasRestantes = 6;
     }
 }
