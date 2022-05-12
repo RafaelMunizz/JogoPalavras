@@ -19,6 +19,21 @@ public class BancoPalavras {
     public BancoPalavras(Boolean key){
         
         if(key){
+            novaListaPalavras.put("chupa", "chupa");
+            novaListaPalavras.put("burca", "burca");
+            novaListaPalavras.put("lenco", "lenço");
+            novaListaPalavras.put("ponte", "ponte");
+            novaListaPalavras.put("ponta", "ponta");
+            novaListaPalavras.put("vasos", "vasos");
+            novaListaPalavras.put("patas", "patas");
+            novaListaPalavras.put("patos", "patos");
+            novaListaPalavras.put("irmas", "irmãs");
+            novaListaPalavras.put("gatos", "gatos");
+            novaListaPalavras.put("gatas", "gatas");
+            novaListaPalavras.put("lirio", "lírio");
+            novaListaPalavras.put("braco", "braço");
+            novaListaPalavras.put("rosea", "rósea");
+            novaListaPalavras.put("limao", "limão");
             novaListaPalavras.put("arara", "arara");
             novaListaPalavras.put("vinil", "vinil");
             novaListaPalavras.put("torta", "torta");
