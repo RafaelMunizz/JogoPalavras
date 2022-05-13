@@ -22,19 +22,5 @@ public class Alertas {
         this.alertERROR.setContentText("Palavra não conhecida. Digite outra palavra!"); //Conteúdo
         this.alertERROR.show();
     }
-
-    public void jogo_TentativasEsgotadas(String palavraCorreta){
-        this.alertERROR.setTitle("Jogo finalizado"); //Título
-        this.alertERROR.setHeaderText("Tentativas esgotadas"); //Cabeçalho
-        this.alertERROR.setContentText("Você chegou a 0 tentativas e perdeu o jogo!\nA palavra correta era: " + palavraCorreta); //Conteúdo
-        this.alertERROR.show();
-    }
-
-    public void jogo_Ganhou(String palavraCorreta){
-        this.alertERROR.setTitle("Jogo finalizado"); //Título
-        this.alertERROR.setHeaderText("PARABÉNS!"); //Cabeçalho
-        this.alertERROR.setContentText("VOCÊ VENCEU O JOGO!\nA palavra correta era: " + palavraCorreta); //Conteúdo
-        this.alertERROR.show();
-    }
     
 }
