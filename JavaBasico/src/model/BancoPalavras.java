@@ -19,6 +19,42 @@ public class BancoPalavras {
     public BancoPalavras(Boolean key){
         
         if(key){
+            
+            novaListaPalavras.put("caldo", "caldo");
+            novaListaPalavras.put("tiara", "tiara");
+            novaListaPalavras.put("acaro", "ácaro");
+            novaListaPalavras.put("micro", "micro");
+            novaListaPalavras.put("ibope", "ibope");
+            novaListaPalavras.put("boate", "boate");
+            novaListaPalavras.put("votar", "votar");
+            novaListaPalavras.put("notar", "notar");
+            novaListaPalavras.put("racao", "ração");
+            novaListaPalavras.put("deles", "deles");
+            novaListaPalavras.put("verme", "verme");
+            novaListaPalavras.put("pense", "pense");
+            novaListaPalavras.put("muita", "muita");
+            novaListaPalavras.put("circo", "circo");
+            novaListaPalavras.put("garfo", "garfo");
+            novaListaPalavras.put("barco", "barco");
+            novaListaPalavras.put("farda", "farda");
+            novaListaPalavras.put("parta", "parta");
+            novaListaPalavras.put("parto", "parto");
+            novaListaPalavras.put("bardo", "bardo");
+            novaListaPalavras.put("dardo", "dardo");
+            novaListaPalavras.put("viral", "viral");
+            novaListaPalavras.put("disco", "disco");
+            novaListaPalavras.put("urina", "urina");
+            novaListaPalavras.put("barca", "barca");
+            novaListaPalavras.put("senha", "senha");
+            novaListaPalavras.put("safra", "safra");
+            novaListaPalavras.put("santa", "santa");
+            novaListaPalavras.put("samba", "samba");
+            novaListaPalavras.put("salsa", "salsa");
+            novaListaPalavras.put("salao", "salão");
+            novaListaPalavras.put("sauna", "sauna");
+            novaListaPalavras.put("salta", "salta");
+            novaListaPalavras.put("sabao", "sabão");
+            novaListaPalavras.put("testa", "testa");
             novaListaPalavras.put("chupa", "chupa");
             novaListaPalavras.put("burca", "burca");
             novaListaPalavras.put("lenco", "lenço");
@@ -936,7 +972,7 @@ public class BancoPalavras {
     
     // Método para pegar uma palavra sem acentos e corrigí-la, caso a palavra os contenha.
     public String palavraFormaFinal(String p){
-
+        
         if (novaListaPalavras.get(p) != null){
             return novaListaPalavras.get(p);
         } else {
