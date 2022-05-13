@@ -53,9 +53,9 @@
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label layoutX="29.0" layoutY="782.0" prefHeight="36.0" prefWidth="106.0" style="-fx-font-size: 19; -fx-font: SansSerif; -fx-font-weight: bold;" text="Tentativas:" textAlignment="CENTER" textFill="#fafaff" />
-      <Label fx:id="lbl_Tentativas" contentDisplay="CENTER" layoutX="135.0" layoutY="786.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 19; -fx-font: sans-serif; -fx-font-weight: bold;" text="6" textAlignment="CENTER" textFill="#fafaff" />
-      <Button fx:id="btn_Desistir" alignment="CENTER" contentDisplay="CENTER" layoutX="376.0" layoutY="776.0" mnemonicParsing="false" onAction="#handleButtonAction_voltarParaMenuInicial" onMouseEntered="#OnMouseEntered_btn_Desistir" onMouseExited="#OnMouseExited_btn_Desistir" prefHeight="28.0" prefWidth="81.0" style="-fx-border-radius: 30%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 16;" text="Sair" textAlignment="CENTER" textFill="WHITE">
+      <Label layoutX="29.0" layoutY="776.0" prefHeight="36.0" prefWidth="106.0" style="-fx-font-size: 19; -fx-font: SansSerif; -fx-font-weight: bold;" text="Tentativas:" textAlignment="CENTER" textFill="#fafaff" />
+      <Label fx:id="lbl_Tentativas" contentDisplay="CENTER" layoutX="135.0" layoutY="780.0" prefHeight="25.0" prefWidth="27.0" style="-fx-font-size: 19; -fx-font: sans-serif; -fx-font-weight: bold;" text="6" textAlignment="CENTER" textFill="#fafaff" />
+      <Button fx:id="btn_Desistir" alignment="CENTER" contentDisplay="CENTER" layoutX="360.0" layoutY="772.0" mnemonicParsing="false" onAction="#handleButtonAction_Desistir" onMouseEntered="#OnMouseEntered_btn_Desistir" onMouseExited="#OnMouseExited_btn_Desistir" prefHeight="45.0" prefWidth="92.0" style="-fx-border-radius: 30%; -fx-background-radius: 100; -fx-background-insets: 0; -fx-background-color: #e75151; -fx-border-color: #4c4347; -fx-border-width: 4; -fx-font-weight: bold; -fx-font-size: 16;" text="Desistir" textAlignment="CENTER" textFill="WHITE">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
