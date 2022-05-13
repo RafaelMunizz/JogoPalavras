@@ -85,7 +85,7 @@ public class FXMLGameController implements Initializable {
     String btn_Desistir_Style;
 
     @FXML
-    public void handleButtonAction_voltarParaMenuInicial(ActionEvent event) throws IOException {
+    public void handleButtonAction_Desistir(ActionEvent event) throws IOException {
         
         // event = javafx.event.ActionEvent[source=Button[id=btn_Desistir, styleClass=button]'Sair']
         //SceneController
@@ -93,11 +93,11 @@ public class FXMLGameController implements Initializable {
         Scene scene;
         Parent root;
         
-        root = FXMLLoader.load(getClass().getResource("/view/FXMLInitial.fxml"));
+        root = FXMLLoader.load(getClass().getResource("/view/FXMLLoser.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
-        stage.setTitle("Qual a palavra?/Menu principal");
+        stage.setTitle("Qual a palavra?/Derrota");
         stage.setResizable(false);
         stage.show();
     }
@@ -190,7 +190,7 @@ public class FXMLGameController implements Initializable {
         }
         
         // Avaliando se a palavra pertence ao banco. Se não pertencer, o jogador deve digitar outra palavra válida
-        if (!BP.palavraValida(txtField_DigitarPalavra.getText())){
+        if (!BP.palavraValida(removerAcentosStrings(txtField_DigitarPalavra.getText()))){
             alerta.entrada_NaoContemNoBanco();
             txtField_DigitarPalavra.setText("");
             return false;
