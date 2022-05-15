@@ -1,6 +1,6 @@
 # Qual a palavra?
 
- - Versão final de desenvolvimento de um jogo desktop desenvolvido em JavaFX.
+ - Versão final de um jogo desktop desenvolvido em JavaFX.
 
 ## Funcionamento:
  
