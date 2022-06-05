@@ -4,6 +4,8 @@ package control;
 import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,7 +85,8 @@ public class FXMLGameController implements Initializable {
     static String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
-
+    List listaEstadoLetras = new ArrayList(); 
+ 
     @FXML
     public void handleButtonAction_Desistir(ActionEvent event) throws IOException {
         
@@ -205,7 +208,6 @@ public class FXMLGameController implements Initializable {
         
         // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
         String palavra = BP.palavraFormaFinal(txtField_DigitarPalavra.getText());
-        //String palavra = txtField_DigitarPalavra.getText();
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
         String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
@@ -219,6 +221,11 @@ public class FXMLGameController implements Initializable {
 
         txtField_DigitarPalavra.setText("");
 
+        letrasRepetidas(palavraRecebidaSeparada);
+        
+        System.out.println(this.listaEstadoLetras);
+        this.listaEstadoLetras.clear();
+        
         // Condição de vitória
         // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
         if(this.totalAcertos == 5){
@@ -253,6 +260,9 @@ public class FXMLGameController implements Initializable {
             lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
+            
+            this.listaEstadoLetras.add(1);
+            
             this.totalAcertos++;
         
         // SEMI-ACERTO
@@ -260,13 +270,37 @@ public class FXMLGameController implements Initializable {
             lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #D3AD69; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
+            
+            this.listaEstadoLetras.add(2);
+
         
         //ERRO
         } else if (!removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva)) && !letraNaPalavra_PosicaoErrada(letraRecebida)){
             lbl.setText(letraRecebida);
             lbl.setStyle("-fx-background-color: #312A2C; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
+            
+            this.listaEstadoLetras.add(0);
         }
+    }
+    
+    // Método que analisa as letras que estão repetidas na palavra recebida
+    public void letrasRepetidas(String[] palavraRecebidaSeparada){
+        
+        List letrasRepetidas = new ArrayList();
+        
+        for (int i = 0; i<5; i++){
+            for (int j = 0; j<5; j++){
+                
+                if(i!=j){
+                    if(palavraRecebidaSeparada[i].equals(palavraRecebidaSeparada[j]) && !letrasRepetidas.contains(palavraRecebidaSeparada[i])){
+                        
+                        letrasRepetidas.add(palavraRecebidaSeparada[i]);
+                    }
+                }
+            }
+        }
+        System.out.println(letrasRepetidas);
     }
     
     // Método para analisar se a letra pertence a palavra e ela não está no local correto
