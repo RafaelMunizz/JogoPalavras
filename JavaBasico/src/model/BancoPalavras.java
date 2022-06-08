@@ -20,6 +20,7 @@ public class BancoPalavras {
         
         if(key){
             
+            novaListaPalavras.put("susto", "susto");
             novaListaPalavras.put("sisos", "sisos");
             novaListaPalavras.put("pavio", "pavio");
             novaListaPalavras.put("risao", "risão");
