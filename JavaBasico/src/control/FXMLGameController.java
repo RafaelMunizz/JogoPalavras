@@ -312,7 +312,7 @@ public class FXMLGameController implements Initializable {
         
         HashMap<String,Integer> letrasRepetidas_Entrada = letrasRepetidas(palavraRecebidaSeparada);
         HashMap<String,Integer> letrasRepetidas_Definitiva = letrasRepetidas(palavraDefinitivaSeparada);
-        
+        /*
         System.out.println("--------------------------------");
         System.out.println("Letras repetidas na entrada: ");
         System.out.println("Letras = " + letrasRepetidas_Entrada.keySet());
@@ -326,7 +326,7 @@ public class FXMLGameController implements Initializable {
         System.out.println(Arrays.toString(palavraRecebidaSeparada));
         System.out.print("Estado: ");
         System.out.println(this.listaEstadoLetras);
-        
+        */
         
         // Se a palavra de entrada tiver acerto ou semi-acerto, ou seja, se pelo menos uma letra é igual a resposta final.
         if (this.listaEstadoLetras.contains(1) || this.listaEstadoLetras.contains(2)){
@@ -335,34 +335,57 @@ public class FXMLGameController implements Initializable {
             
             for (String c : letrasRepetidas_Entrada.keySet()){
                 
-                System.out.printf("Letra = %s\n", c);
 
                 // Se nas letras repetidas da palavra definitiva contém a que se repete na palavra de entrada
                 if(letrasRepetidas_Definitiva.containsKey(c)){
+                    
+                    //System.out.printf("letrasRepetidas_Entrada.get(c) = %d\n", letrasRepetidas_Entrada.get(c));
+                    //System.out.printf("letrasRepetidas_Definitiva.get(c) = %d\n", letrasRepetidas_Definitiva.get(c));
 
                     // Se a repetição da letra na entrada é maior que na definitiva e se a letra for correta
-                    if(letrasRepetidas_Entrada.get(c) > letrasRepetidas_Definitiva.get(c) && letraCorreta(c, palavraRecebidaSeparada) ){
-                        System.out.printf("A letra %s está correta\n", c);
+                    if(letrasRepetidas_Entrada.get(c) > letrasRepetidas_Definitiva.get(c)){
+                        
+                        System.out.printf("Letra '%s' se repete mais na palavra de entrada ", c);
+                        letraCorreta(c, palavraRecebidaSeparada);
+                      
+                    } else if (letrasRepetidas_Entrada.get(c).equals(letrasRepetidas_Definitiva.get(c))){
+                        
+                        System.out.printf("Letra '%s' se repete nas duas igualmente ", c);
+                        letraCorreta(c, palavraRecebidaSeparada);
+     
+                    } else if (letrasRepetidas_Entrada.get(c) < letrasRepetidas_Definitiva.get(c)){
+                        
+                        System.out.printf("Letra '%s' se repete mais na definitiva que na de entrada ", c);
+                        letraCorreta(c, palavraRecebidaSeparada);
+
                     }
                     
                 } else {
-                    System.out.println("Letra não pertence a palavra");
+                    System.out.printf("Letra %s não pertence a palavra\n", c);
                 }
                 
             }
         }
     }
     
-    public boolean letraCorreta(String letra, String[] palavra){
+    public int letraCorreta(String letra, String[] palavra){
         
         for(int i = 0; i < 5; i++){
             
-            if(this.listaEstadoLetras.get(i) == 1 && palavra[i].equals(letra)){
-                System.out.printf("A posição da letra é %d\n", i);
-                return true;
+            if(this.listaEstadoLetras.get(i) == 0 && palavra[i].equals(letra)){
+                System.out.printf("na posição %d e está errada\n", i);
+                return 0;
+                
+            } else if(this.listaEstadoLetras.get(i) == 1 && palavra[i].equals(letra)){
+                System.out.printf("na posição %d e está correta\n", i);
+                return 1;
+                
+            } else if(this.listaEstadoLetras.get(i) == 2 && palavra[i].equals(letra)){
+                System.out.printf("na posição %d e está semi-certa\n", i);
+                return 2;
             }
         }
-        return false;
+        return 0;
     }
     
     // Método para analisar se a letra pertence a palavra e ela não está no local correto
