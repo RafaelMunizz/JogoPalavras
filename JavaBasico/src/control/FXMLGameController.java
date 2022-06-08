@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -85,7 +87,7 @@ public class FXMLGameController implements Initializable {
     static String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
-    List listaEstadoLetras = new ArrayList(); 
+    List<Integer> listaEstadoLetras = new ArrayList(); 
  
     @FXML
     public void handleButtonAction_Desistir(ActionEvent event) throws IOException {
@@ -220,10 +222,11 @@ public class FXMLGameController implements Initializable {
         testeCaracteres(palavraRecebidaSeparada[4], palavraDefinitivaSeparada[4], lbl_4);
 
         txtField_DigitarPalavra.setText("");
-
-        letrasRepetidas(palavraRecebidaSeparada);
         
-        System.out.println(this.listaEstadoLetras);
+        // Teste de cores
+        analiseCoresLetras(palavraRecebidaSeparada, palavraDefinitivaSeparada);
+        
+        // Limpando a lista que analisa o estado das letras na entrada
         this.listaEstadoLetras.clear();
         
         // Condição de vitória
@@ -285,22 +288,81 @@ public class FXMLGameController implements Initializable {
     }
     
     // Método que analisa as letras que estão repetidas na palavra recebida
-    public void letrasRepetidas(String[] palavraRecebidaSeparada){
+    public HashMap<String,Integer> letrasRepetidas(String[] palavraRecebidaSeparada){
         
-        List letrasRepetidas = new ArrayList();
+        HashMap<String,Integer> letrasRepetidas = new HashMap<>();
         
         for (int i = 0; i<5; i++){
-            for (int j = 0; j<5; j++){
+            
+            String letra = removerAcentosStrings(palavraRecebidaSeparada[i]);
                 
-                if(i!=j){
-                    if(palavraRecebidaSeparada[i].equals(palavraRecebidaSeparada[j]) && !letrasRepetidas.contains(palavraRecebidaSeparada[i])){
-                        
-                        letrasRepetidas.add(palavraRecebidaSeparada[i]);
-                    }
-                }
+            if(!letrasRepetidas.containsKey(letra)){
+
+                letrasRepetidas.put(letra, 1);
+            } else {
+                letrasRepetidas.put(letra, letrasRepetidas.get(letra) + 1);
             }
         }
-        System.out.println(letrasRepetidas);
+        
+        return letrasRepetidas;
+    }
+    
+    // Método para analisar se as cores corretas estão nas letras corretas
+    public void analiseCoresLetras(String[] palavraRecebidaSeparada, String[] palavraDefinitivaSeparada){
+        
+        HashMap<String,Integer> letrasRepetidas_Entrada = letrasRepetidas(palavraRecebidaSeparada);
+        HashMap<String,Integer> letrasRepetidas_Definitiva = letrasRepetidas(palavraDefinitivaSeparada);
+        
+        System.out.println("--------------------------------");
+        System.out.println("Letras repetidas na entrada: ");
+        System.out.println("Letras = " + letrasRepetidas_Entrada.keySet());
+        System.out.println("Repetições = " + letrasRepetidas_Entrada.values());
+        System.out.println("Letras repetidas na definitiva: ");
+        System.out.println("Letras = " + letrasRepetidas_Definitiva.keySet());
+        System.out.println("Repetições = " + letrasRepetidas_Definitiva.values());
+        
+        System.out.println("Estado letras: ");
+        System.out.print("Palavra: ");
+        System.out.println(Arrays.toString(palavraRecebidaSeparada));
+        System.out.print("Estado: ");
+        System.out.println(this.listaEstadoLetras);
+        
+        
+        // Se a palavra de entrada tiver acerto ou semi-acerto, ou seja, se pelo menos uma letra é igual a resposta final.
+        if (this.listaEstadoLetras.contains(1) || this.listaEstadoLetras.contains(2)){
+            
+            System.out.println();
+            
+            for (String c : letrasRepetidas_Entrada.keySet()){
+                
+                System.out.printf("Letra = %s\n", c);
+
+                // Se nas letras repetidas da palavra definitiva contém a que se repete na palavra de entrada
+                if(letrasRepetidas_Definitiva.containsKey(c)){
+
+                    // Se a repetição da letra na entrada é maior que na definitiva e se a letra for correta
+                    if(letrasRepetidas_Entrada.get(c) > letrasRepetidas_Definitiva.get(c) && letraCorreta(c, palavraRecebidaSeparada) ){
+                        System.out.printf("A letra %s está correta\n", c);
+                    }
+                    
+                } else {
+                    System.out.println("Letra não pertence a palavra");
+                }
+                
+            }
+        }
+    }
+    
+    public boolean letraCorreta(String letra, String[] palavra){
+        
+        for(int i = 0; i < 5; i++){
+            
+            if(this.listaEstadoLetras.get(i) == 1 && palavra[i].equals(letra)){
+                System.out.printf("A posição da letra é %d\n", i);
+                return true;
+            }
+        }
+        return false;
     }
     
     // Método para analisar se a letra pertence a palavra e ela não está no local correto
@@ -362,7 +424,8 @@ public class FXMLGameController implements Initializable {
         FXMLGameController.tentativasRestantes = 6;
         lbl_Tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
         
-        FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
+        //FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
+        FXMLGameController.palavraEscolhida = "salsa"; // Para testes
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
         this.btn_Desistir_Style = btn_Desistir.getStyle();
