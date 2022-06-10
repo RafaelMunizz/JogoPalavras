@@ -6,26 +6,23 @@ package connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.sql.Statement;
 
-/**
- *
- * @author rafae
- */
+// SITE PARA BAIXAR O DRIVER MAIS ATUAL: 
+// https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc/3.36.0
+
 public class ConnectionSQLite {
   
     private Connection conexao;
 
-    /**
-     * Conecta a um banco de dados (cria o banco se ele não existir)
-     *
-     * @return
-     */
+   // Conecta a um banco de dados ou cria o banco se ele não existir
     public boolean conectar() {
 
         try {
-
-            String url = "jdbc:sqlite:banco_de_dados/banco_sqlite.db";
+        
+            String url = "jdbc:sqlite:database\\SQLite_db.db";
 
             this.conexao = DriverManager.getConnection(url);
 
@@ -38,7 +35,8 @@ public class ConnectionSQLite {
         
         return true;
     }
-
+    
+    // Desconecta o banco
     public boolean desconectar() {
 
         try {
@@ -54,5 +52,29 @@ public class ConnectionSQLite {
         System.out.println("desconectou!!!");
         return true;
 
+    }
+    
+    // Método para criar statements que executarão as consultas
+    public Statement criarStatement(){
+        
+        try{
+            return this.conexao.createStatement();
+        } catch (SQLException e){
+            return null;
+        }
+    }
+    
+    // Criar SQL's com valores pré-prontos
+    public PreparedStatement criarPreparedStatement(String sql) {
+        try {
+            return this.conexao.prepareStatement(sql);
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+    
+    // Retornar a conexão do banco 
+    public Connection getConexao(){
+        return this.conexao;
     }
 }
