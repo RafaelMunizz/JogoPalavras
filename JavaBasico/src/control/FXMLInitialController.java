@@ -151,11 +151,14 @@ public class FXMLInitialController implements Initializable {
         transicaoOpacidade(btn_MudarPraCreditos, this.btn_MudarPraCreditos_Style, false);
     }
     
+
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         this.btn_MudarPraJogo_Style = btn_MudarPraJogo.getStyle();
         this.btn_Fechar_Style = btn_Fechar.getStyle();
         this.btn_MudarPraInstrucoes_Style = btn_MudarPraInstrucoes.getStyle();
         this.btn_MudarPraCreditos_Style = btn_MudarPraCreditos.getStyle();
+        
     }    
 }
