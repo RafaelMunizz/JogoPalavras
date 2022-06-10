@@ -127,4 +127,45 @@ public class Table_palavras {
             conexaoSQLite.desconectar();
         }
     }
+    
+    public boolean checarPalavraNoBanco(String palavra){
+
+        conexaoSQLite.conectar();
+        
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+        
+        String sql = "SELECT palavraSemAcento FROM tbl_palavras WHERE palavraSemAcento = ?;";
+
+        try{
+            
+            preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
+            preparedStatement.setString(1, palavra);
+            
+            resultSet = preparedStatement.executeQuery();
+            
+            if (resultSet.getString("palavraSemAcento").equals(palavra)){
+                resultSet.close();
+                preparedStatement.close();
+                conexaoSQLite.desconectar();
+                return true;
+            }
+            
+        }catch(SQLException e){
+            System.out.println("Erro ao checar palavra: " + e);
+           
+        }finally{
+            
+            try{
+                resultSet.close();
+                preparedStatement.close();
+                conexaoSQLite.desconectar();
+                
+            }catch(SQLException ex){
+                System.out.println("Erro ao fechar: " + ex);
+
+            }
+        }
+        return false;
+    }
 }
