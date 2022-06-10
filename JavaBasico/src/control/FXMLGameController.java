@@ -447,8 +447,8 @@ public class FXMLGameController implements Initializable {
         FXMLGameController.tentativasRestantes = 6;
         lbl_Tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
         
-        //FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
-        FXMLGameController.palavraEscolhida = "salsa"; // Para testes
+        FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
+        //FXMLGameController.palavraEscolhida = "salsa"; // Para testes
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
         this.btn_Desistir_Style = btn_Desistir.getStyle();
