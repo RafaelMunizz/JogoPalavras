@@ -1,6 +1,8 @@
 
 package control;
 
+import connection.ConnectionSQLite;
+import connection.Table_palavras;
 import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
@@ -71,23 +73,25 @@ public class FXMLGameController implements Initializable {
     @FXML private Label lbl_53;
     @FXML private Label lbl_54;
     
-    //Demais itens
+    //Demais itens FRONT
     @FXML private TextField txtField_DigitarPalavra;
     @FXML private Label lbl_Tentativas;
     @FXML private Button btn_EnviarPalavra;
     @FXML private Button btn_Desistir;
 
-    
-    // Variáveis
+    // Objetos
     Alertas alerta = new Alertas();
     BancoPalavras BP = new BancoPalavras(true);
+    List<Integer> listaEstadoLetras = new ArrayList();
+    ConnectionSQLite conexaoSQLite = new ConnectionSQLite();
+    Table_palavras database_palavras = new Table_palavras(conexaoSQLite);
     
+    // Variáveis
     static int tentativasRestantes = 6;
     int totalAcertos = 0;
     static String palavraEscolhida;
     String btn_EnviarPalavra_Style;
     String btn_Desistir_Style;
-    List<Integer> listaEstadoLetras = new ArrayList(); 
  
     @FXML
     public void handleButtonAction_Desistir(ActionEvent event) throws IOException {
@@ -156,6 +160,9 @@ public class FXMLGameController implements Initializable {
         
         System.out.println(FXMLGameController.palavraEscolhida);
         
+       // Teste banco 
+        System.out.println("\n" + database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText()) + "\n");
+        
         // Verificação se a palavra é válida 
         if (analisePalavra(txtField_DigitarPalavra.getText())){
 
@@ -207,6 +214,8 @@ public class FXMLGameController implements Initializable {
     public void colocarPalavras(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
         
         this.totalAcertos = 0;
+        
+
         
         // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
         String palavra = BP.palavraFormaFinal(txtField_DigitarPalavra.getText());
