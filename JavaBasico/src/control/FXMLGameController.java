@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -27,7 +26,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Alertas;
-import model.BancoPalavras;
 
 public class FXMLGameController implements Initializable {
     
@@ -81,7 +79,7 @@ public class FXMLGameController implements Initializable {
 
     // Objetos
     Alertas alerta = new Alertas();
-    BancoPalavras BP = new BancoPalavras(true);
+    //BancoPalavras BP = new BancoPalavras(true);
     List<Integer> listaEstadoLetras = new ArrayList();
     ConnectionSQLite conexaoSQLite = new ConnectionSQLite();
     Table_palavras database_palavras = new Table_palavras(conexaoSQLite);
@@ -159,9 +157,11 @@ public class FXMLGameController implements Initializable {
     public void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
         System.out.println(FXMLGameController.palavraEscolhida);
+        System.out.println("Total acertos: ");
+        System.out.print(this.totalAcertos);
         
-       // Teste banco 
-        System.out.println("\n" + database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText()) + "\n");
+        // Teste banco 
+        //System.out.println("\n" + database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText()) + "\n");
         
         // Verificação se a palavra é válida 
         if (analisePalavra(txtField_DigitarPalavra.getText())){
@@ -202,7 +202,7 @@ public class FXMLGameController implements Initializable {
         }
         
         // Avaliando se a palavra pertence ao banco. Se não pertencer, o jogador deve digitar outra palavra válida
-        if (!BP.palavraValida(removerAcentosStrings(txtField_DigitarPalavra.getText()))){
+        if (database_palavras.checarPalavraNoBanco(removerAcentosStrings(txtField_DigitarPalavra.getText())).equals("null")){
             alerta.entrada_NaoContemNoBanco();
             txtField_DigitarPalavra.setText("");
             return false;
@@ -218,7 +218,7 @@ public class FXMLGameController implements Initializable {
 
         
         // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
-        String palavra = BP.palavraFormaFinal(txtField_DigitarPalavra.getText());
+        String palavra = database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText());
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
         String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
@@ -241,7 +241,8 @@ public class FXMLGameController implements Initializable {
         // Condição de vitória
         // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
         if(this.totalAcertos == 5){
-
+            
+            System.out.println("ENTROU NESSA MERDA");
             try {
                 //alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
                 telaVitoria(); //Desenvolvendo
@@ -456,7 +457,8 @@ public class FXMLGameController implements Initializable {
         FXMLGameController.tentativasRestantes = 6;
         lbl_Tentativas.setText(String.valueOf(FXMLGameController.tentativasRestantes));
         
-        FXMLGameController.palavraEscolhida = BP.getPalavraEscolhida();
+        FXMLGameController.palavraEscolhida = database_palavras.getPalavraEscolhida();
+        
         //FXMLGameController.palavraEscolhida = "salsa"; // Para testes
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
