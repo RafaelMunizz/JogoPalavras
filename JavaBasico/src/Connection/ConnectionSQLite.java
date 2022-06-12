@@ -31,7 +31,7 @@ public class ConnectionSQLite {
             return false;
         }
 
-        System.out.println("conectou!!!");
+        //System.out.println("conectou!!!");
         
         return true;
     }
@@ -49,7 +49,8 @@ public class ConnectionSQLite {
             System.err.println(e.getMessage());
             return false;
         }
-        System.out.println("desconectou!!!");
+        
+        //System.out.println("desconectou!!!");
         return true;
 
     }
