@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Random;
 
 /**
  *
@@ -16,9 +17,15 @@ import java.sql.Statement;
 public class Table_palavras {
  
     private final ConnectionSQLite conexaoSQLite;
+    private static String palavraEscolhida;
 
     public Table_palavras(ConnectionSQLite conexaoSQLite) {
         this.conexaoSQLite = conexaoSQLite;
+        Table_palavras.palavraEscolhida = escolherPalavraAleatoria();
+    }
+
+    public static String getPalavraEscolhida() {
+        return palavraEscolhida;
     }
     
     public void createTable(){
@@ -128,28 +135,29 @@ public class Table_palavras {
         }
     }
     
-    public boolean checarPalavraNoBanco(String palavra){
-
+    // Método pra checar se determinada palavra está no banco. 
+    //Caso esteja, será retornada a mesma palavra com acentuações corretas
+    public String checarPalavraNoBanco(String palavra){
+        
+        // A key será usada para diferenciar se a pessoa quer apenas checar se a palavra 
+        // pertence ao banco ou se deverá retornar a palavra com acentos
+        
         conexaoSQLite.conectar();
         
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         
-        String sql = "SELECT palavraSemAcento FROM tbl_palavras WHERE palavraSemAcento = ?;";
+        String sql = "SELECT palavra, palavraSemAcento FROM tbl_palavras WHERE palavraSemAcento = ? or palavra = ?;";
 
         try{
             
             preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
             preparedStatement.setString(1, palavra);
+            preparedStatement.setString(2, palavra);
             
             resultSet = preparedStatement.executeQuery();
             
-            if (resultSet.getString("palavraSemAcento").equals(palavra)){
-                resultSet.close();
-                preparedStatement.close();
-                conexaoSQLite.desconectar();
-                return true;
-            }
+            return resultSet.getString("palavra");
             
         }catch(SQLException e){
             System.out.println("Erro ao checar palavra: " + e);
@@ -166,6 +174,69 @@ public class Table_palavras {
 
             }
         }
-        return false;
+        return "null";
+    }
+    
+    private String escolherPalavraAleatoria(){
+
+        conexaoSQLite.conectar();
+        
+        ResultSet resultSet = null;
+        PreparedStatement preparedStatement = null;
+        
+        String sql = "SELECT palavra FROM tbl_palavras ORDER BY RANDOM() LIMIT 1;";
+
+        try{
+            
+            preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
+            resultSet = preparedStatement.executeQuery();
+            
+            return resultSet.getString("palavra");
+            
+        }catch(SQLException e){
+            System.out.println("Erro ao escolher palavra aleatória: " + e);
+           
+        }finally{
+            
+            try{
+                resultSet.close();
+                preparedStatement.close();
+                conexaoSQLite.desconectar();
+                
+            }catch(SQLException ex){
+                System.out.println("Erro ao fechar: " + ex);
+
+            }
+        }
+        return "ERROR";
+    }
+    
+    public int quantidadePalavras(){
+
+        String sql = "SELECT COUNT(*) FROM tbl_palavras;";
+        
+        //executando o sql de criar tabelas
+        boolean conectou = false;
+
+        try {
+            conectou = this.conexaoSQLite.conectar();
+            
+            Statement stmt = this.conexaoSQLite.criarStatement();
+            
+            ResultSet resultSet = stmt.executeQuery(sql);
+            int resultado = resultSet.getInt("COUNT(*)");
+            
+            return resultado;
+
+        } catch (SQLException e) {
+            //mensagem de erro na criação da tabela
+            System.out.println("Tamanho da tabela não retornado. Erro: " + e);
+            
+        } finally {
+            if(conectou){
+                this.conexaoSQLite.desconectar();
+            }
+        }
+        return 0;
     }
 }
