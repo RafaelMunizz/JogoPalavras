@@ -239,13 +239,11 @@ public class FXMLGameController implements Initializable {
         this.listaEstadoLetras.clear();
         
         // Condição de vitória
-        // Também usado para que palavras com acento sejam colocadas como corretas, mesmo que a entrada seja sem acentos.
         if(this.totalAcertos == 5){
             
-            System.out.println("ENTROU NESSA MERDA");
             try {
                 //alerta.jogo_Ganhou(this.palavraEscolhida.toUpperCase());
-                telaVitoria(); //Desenvolvendo
+                telaVitoria(); 
             } catch (IOException ex) {
                 Logger.getLogger(FXMLGameController.class.getName()).log(Level.SEVERE, null, ex);
             }
