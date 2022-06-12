@@ -4,6 +4,7 @@
  */
 package control;
 
+import connection.Table_palavras;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +19,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import model.BancoPalavras;
 
 /**
  * FXML Controller class
@@ -35,9 +35,6 @@ public class FXMLWinnerController implements Initializable {
     @FXML private Label lbl_tentativas;
     @FXML private Button btn_MudarPraJogo;
     @FXML private Button btn_MudarPraMenu;
-    
-    // Outros
-    BancoPalavras BP = new BancoPalavras(false);
     
     String btn_MudarPraMenu_Style;
     String btn_MudarPraJogo_Style;
@@ -112,17 +109,8 @@ public class FXMLWinnerController implements Initializable {
         
         this.btn_MudarPraJogo_Style = btn_MudarPraJogo.getStyle();
         this.btn_MudarPraMenu_Style = btn_MudarPraMenu.getStyle();
-        // Variável auxiliar para acessar métodos getters de outra classe
         
-        
-        
-        // A fazer: Ao pegar os valores da palavra e de tentativas da outra classe
-        // eles estão vindo com o seu valor de inicialização, e não com os valores 
-        // das variáveis no momento em que o jogador ganha ou perde a partida.
-        
-        System.out.println(BP.getPalavraEscolhida());
-        
-        String[] letrasSeparadas = BP.getPalavraEscolhida().toUpperCase().split("");
+        String[] letrasSeparadas = Table_palavras.getPalavraEscolhida().toUpperCase().split("");
         
         this.lbl_0.setText(letrasSeparadas[0]);
         this.lbl_1.setText(letrasSeparadas[1]);
