@@ -3,10 +3,7 @@ package model;
 import javafx.scene.control.Alert;
 
 public class Alertas {
-    
-    Alert alertWARNING = new Alert(Alert.AlertType.WARNING);
-    Alert alertINFORMATION = new Alert(Alert.AlertType.INFORMATION);
-    Alert alertCONFIRMATION = new Alert(Alert.AlertType.CONFIRMATION);
+
     Alert alertERROR = new Alert(Alert.AlertType.ERROR);
     
     public void entrada_MaiorOuMenorQueCincoCaracteres(){
