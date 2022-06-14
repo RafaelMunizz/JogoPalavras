@@ -21,7 +21,8 @@ public class ConnectionSQLite {
     public boolean conectar() {
 
         try {
-        
+            
+            //C:\Users\rafae\OneDrive\Documentos\GitHub\JogoPalavras\JavaBasico\database\\SQLite_db.db
             String url = "jdbc:sqlite:database\\SQLite_db.db";
 
             this.conexao = DriverManager.getConnection(url);
