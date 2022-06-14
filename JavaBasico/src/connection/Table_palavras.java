@@ -146,13 +146,12 @@ public class Table_palavras {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         
-        String sql = "SELECT palavra, palavraSemAcento FROM tbl_palavras WHERE palavraSemAcento = ? or palavra = ?;";
+        String sql = "SELECT palavra FROM tbl_palavras WHERE palavraSemAcento = ?;";
 
         try{
             
             preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
             preparedStatement.setString(1, palavra);
-            preparedStatement.setString(2, palavra);
             
             resultSet = preparedStatement.executeQuery();
             
@@ -183,14 +182,14 @@ public class Table_palavras {
         ResultSet resultSet = null;
         PreparedStatement preparedStatement = null;
         
-        String sql = "SELECT palavra FROM tbl_palavras ORDER BY RANDOM() LIMIT 1;";
+        String sql = "SELECT palavraEscolha FROM tbl_palavras WHERE palavraEscolha != \"NULL\" ORDER BY RANDOM() LIMIT 1;";
 
         try{
             
             preparedStatement = conexaoSQLite.criarPreparedStatement(sql);
             resultSet = preparedStatement.executeQuery();
             
-            return resultSet.getString("palavra");
+            return resultSet.getString("palavraEscolha");
             
         }catch(SQLException e){
             System.out.println("Erro ao escolher palavra aleatória: " + e);
