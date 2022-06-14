@@ -156,12 +156,7 @@ public class FXMLGameController implements Initializable {
     @FXML
     public void handleButtonAction_EnviarPalavra(ActionEvent event) {
         
-        System.out.println(FXMLGameController.palavraEscolhida);
-        System.out.println("Total acertos: ");
-        System.out.print(this.totalAcertos);
-        
-        // Teste banco 
-        //System.out.println("\n" + database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText()) + "\n");
+        System.out.println("\nPalavra correta: " + FXMLGameController.palavraEscolhida);
         
         // Verificação se a palavra é válida 
         if (analisePalavra(txtField_DigitarPalavra.getText())){
@@ -202,7 +197,7 @@ public class FXMLGameController implements Initializable {
         }
         
         // Avaliando se a palavra pertence ao banco. Se não pertencer, o jogador deve digitar outra palavra válida
-        if (database_palavras.checarPalavraNoBanco(removerAcentosStrings(txtField_DigitarPalavra.getText())).equals("null")){
+        if (database_palavras.checarPalavraNoBanco(removerAcentosStrings(txtField_DigitarPalavra.getText().toLowerCase())).equals("null")){
             alerta.entrada_NaoContemNoBanco();
             txtField_DigitarPalavra.setText("");
             return false;
@@ -215,15 +210,13 @@ public class FXMLGameController implements Initializable {
         
         this.totalAcertos = 0;
         
-
-        
         // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
-        String palavra = database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText());
+        String palavra = database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText().toLowerCase());
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
         String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
         String[] palavraDefinitivaSeparada = FXMLGameController.palavraEscolhida.toUpperCase().split("");
-
+        
         testeCaracteres(palavraRecebidaSeparada[0], palavraDefinitivaSeparada[0], lbl_0);
         testeCaracteres(palavraRecebidaSeparada[1], palavraDefinitivaSeparada[1], lbl_1);
         testeCaracteres(palavraRecebidaSeparada[2], palavraDefinitivaSeparada[2], lbl_2);
@@ -234,6 +227,8 @@ public class FXMLGameController implements Initializable {
         
         // Teste de cores
         analiseCoresLetras(palavraRecebidaSeparada, palavraDefinitivaSeparada);
+        // Alterar cores dos labels
+        alterarCoresLabels(lbl_0, lbl_1, lbl_2, lbl_3, lbl_4);
         
         // Limpando a lista que analisa o estado das letras na entrada
         this.listaEstadoLetras.clear();
@@ -269,9 +264,7 @@ public class FXMLGameController implements Initializable {
         // ACERTO
         if (removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva))){
             lbl.setText(letraRecebida);
-            lbl.setStyle("-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
-            
             this.listaEstadoLetras.add(1);
             
             this.totalAcertos++;
@@ -279,18 +272,13 @@ public class FXMLGameController implements Initializable {
         // SEMI-ACERTO
         } else if (!removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva)) && letraNaPalavra_PosicaoErrada(letraRecebida)) {
             lbl.setText(letraRecebida);
-            lbl.setStyle("-fx-background-color: #D3AD69; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
-            
             this.listaEstadoLetras.add(2);
-
         
         //ERRO
         } else if (!removerAcentosStrings(letraRecebida).equals(removerAcentosStrings(letraDefinitiva)) && !letraNaPalavra_PosicaoErrada(letraRecebida)){
             lbl.setText(letraRecebida);
-            lbl.setStyle("-fx-background-color: #312A2C; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
             lbl.setPrefHeight(75.0);
-            
             this.listaEstadoLetras.add(0);
         }
     }
@@ -300,7 +288,7 @@ public class FXMLGameController implements Initializable {
         
         HashMap<String,Integer> letrasRepetidas = new HashMap<>();
         
-        for (int i = 0; i<5; i++){
+        for (int i = 0; i < 5; i++){
             
             String letra = removerAcentosStrings(palavraRecebidaSeparada[i]);
                 
@@ -320,80 +308,90 @@ public class FXMLGameController implements Initializable {
         
         HashMap<String,Integer> letrasRepetidas_Entrada = letrasRepetidas(palavraRecebidaSeparada);
         HashMap<String,Integer> letrasRepetidas_Definitiva = letrasRepetidas(palavraDefinitivaSeparada);
-        /*
-        System.out.println("--------------------------------");
-        System.out.println("Letras repetidas na entrada: ");
-        System.out.println("Letras = " + letrasRepetidas_Entrada.keySet());
-        System.out.println("Repetições = " + letrasRepetidas_Entrada.values());
-        System.out.println("Letras repetidas na definitiva: ");
-        System.out.println("Letras = " + letrasRepetidas_Definitiva.keySet());
-        System.out.println("Repetições = " + letrasRepetidas_Definitiva.values());
-        
-        System.out.println("Estado letras: ");
-        System.out.print("Palavra: ");
-        System.out.println(Arrays.toString(palavraRecebidaSeparada));
-        System.out.print("Estado: ");
-        System.out.println(this.listaEstadoLetras);
-        */
         
         // Se a palavra de entrada tiver acerto ou semi-acerto, ou seja, se pelo menos uma letra é igual a resposta final.
         if (this.listaEstadoLetras.contains(1) || this.listaEstadoLetras.contains(2)){
             
-            System.out.println();
-            
             for (String c : letrasRepetidas_Entrada.keySet()){
                 
-
                 // Se nas letras repetidas da palavra definitiva contém a que se repete na palavra de entrada
                 if(letrasRepetidas_Definitiva.containsKey(c)){
-                    
-                    //System.out.printf("letrasRepetidas_Entrada.get(c) = %d\n", letrasRepetidas_Entrada.get(c));
-                    //System.out.printf("letrasRepetidas_Definitiva.get(c) = %d\n", letrasRepetidas_Definitiva.get(c));
 
                     // Se a repetição da letra na entrada é maior que na definitiva e se a letra for correta
                     if(letrasRepetidas_Entrada.get(c) > letrasRepetidas_Definitiva.get(c)){
                         
-                        System.out.printf("Letra '%s' se repete mais na palavra de entrada ", c);
-                        letraCorreta(c, palavraRecebidaSeparada);
-                      
-                    } else if (letrasRepetidas_Entrada.get(c).equals(letrasRepetidas_Definitiva.get(c))){
-                        
-                        System.out.printf("Letra '%s' se repete nas duas igualmente ", c);
-                        letraCorreta(c, palavraRecebidaSeparada);
+                        // Variável que armazenará a quantidade de letras que deverão ser apagadas.
+                        int quantApagar = letrasRepetidas_Entrada.get(c) - letrasRepetidas_Definitiva.get(c);
+                        // Variável que armazenará o índice da letra a ser apagada.
+                         ArrayList<Integer> letraApagar = letraASerApagada(c, palavraRecebidaSeparada);
      
-                    } else if (letrasRepetidas_Entrada.get(c) < letrasRepetidas_Definitiva.get(c)){
-                        
-                        System.out.printf("Letra '%s' se repete mais na definitiva que na de entrada ", c);
-                        letraCorreta(c, palavraRecebidaSeparada);
-
+                        switch(quantApagar){
+                            case 2:
+                                this.listaEstadoLetras.set(letraApagar.get(1), 0);
+                                this.listaEstadoLetras.set(letraApagar.get(2), 0);
+                            case 1:
+                                this.listaEstadoLetras.set(letraApagar.get(1), 0);
+                        }              
                     }
                     
                 } else {
-                    System.out.printf("Letra %s não pertence a palavra\n", c);
+                    //System.out.printf("Letra %s não pertence a palavra\n", c);
                 }
-                
             }
         }
     }
     
-    public int letraCorreta(String letra, String[] palavra){
+    // Método para alterar cor dos labels conforme a lista de estados
+    public void alterarCoresLabels(Label lbl_0, Label lbl_1, Label lbl_2, Label lbl_3, Label lbl_4){
+        
+         alterarCoresLabelsAux(lbl_0, this.listaEstadoLetras.get(0));
+         alterarCoresLabelsAux(lbl_1, this.listaEstadoLetras.get(1));
+         alterarCoresLabelsAux(lbl_2, this.listaEstadoLetras.get(2));
+         alterarCoresLabelsAux(lbl_3, this.listaEstadoLetras.get(3));
+         alterarCoresLabelsAux(lbl_4, this.listaEstadoLetras.get(4));
+    }
+    
+    // Método para alterar cor dos labels
+    public void alterarCoresLabelsAux(Label lbl, Integer estado){
+    
+        switch(estado){
+            //Letra errada
+            case 0:
+                lbl.setStyle("-fx-background-color: #312A2C; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+                break;
+            //Letra certa
+            case 1:
+                lbl.setStyle("-fx-background-color: #3AA394; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+                break;
+            //Letra semi-certa
+            case 2:
+                lbl.setStyle("-fx-background-color: #D3AD69; -fx-background-insets: 0; -fx-background-radius: 10%; -fx-font-size: 46; -fx-font-weight: bold; -fx-text-fill: #FAFAFF;");
+                break;
+        }
+    }
+    
+    // Método para saber qual letra deverá ser apagada, para corresponder a quantidade de letras
+    // na palavra correta.
+    public  ArrayList<Integer> letraASerApagada(String letra, String[] palavra){
+        
+        ArrayList<Integer> lista = new ArrayList<>();
         
         for(int i = 0; i < 5; i++){
             
-            if(this.listaEstadoLetras.get(i) == 0 && palavra[i].equals(letra)){
-                System.out.printf("na posição %d e está errada\n", i);
-                return 0;
-                
-            } else if(this.listaEstadoLetras.get(i) == 1 && palavra[i].equals(letra)){
-                System.out.printf("na posição %d e está correta\n", i);
-                return 1;
-                
-            } else if(this.listaEstadoLetras.get(i) == 2 && palavra[i].equals(letra)){
-                System.out.printf("na posição %d e está semi-certa\n", i);
-                return 2;
+            if(this.listaEstadoLetras.get(i) == 1 && removerAcentosStrings(palavra[i]).equals(letra)){
+                lista.add(i);
             }
         }
-        return 0;
+        
+        for(int j = 0; j < 5; j++){
+ 
+            if(this.listaEstadoLetras.get(j) == 2 && removerAcentosStrings(palavra[j]).equals(letra)){
+                lista.add(j);
+            }
+        }
+        
+        //Retornar o índice da letra que deverá ser apagada
+        return lista;
     }
     
     // Método para analisar se a letra pertence a palavra e ela não está no local correto
