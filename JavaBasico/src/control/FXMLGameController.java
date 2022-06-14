@@ -211,7 +211,7 @@ public class FXMLGameController implements Initializable {
         this.totalAcertos = 0;
         
         // Se a palavra for sem acentos, será encontrada uma equivalente com acentos corretos
-        String palavra = database_palavras.checarPalavraNoBanco(txtField_DigitarPalavra.getText().toLowerCase());
+        String palavra = database_palavras.checarPalavraNoBanco(removerAcentosStrings(txtField_DigitarPalavra.getText().toLowerCase()));
 
         // O tratamento abaixo pega o texto recebido do front-end, põe suas letras em maiúsculo e separa todas as letras.
         String[] palavraRecebidaSeparada = palavra.toUpperCase().split("");
