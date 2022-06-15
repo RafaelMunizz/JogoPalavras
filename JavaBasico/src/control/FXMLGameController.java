@@ -322,15 +322,15 @@ public class FXMLGameController implements Initializable {
                         
                         // Variável que armazenará a quantidade de letras que deverão ser apagadas.
                         int quantApagar = letrasRepetidas_Entrada.get(c) - letrasRepetidas_Definitiva.get(c);
-                        // Variável que armazenará o índice da letra a ser apagada.
-                         ArrayList<Integer> letraApagar = letraASerApagada(c, palavraRecebidaSeparada);
+                        // Variável que armazenará os índices das letras a serem apagadas.
+                        ArrayList<Integer> letraApagar = letraASerApagada(c, palavraRecebidaSeparada);
      
                         switch(quantApagar){
                             case 2:
+                                this.listaEstadoLetras.set(letraApagar.get(0), 0);
                                 this.listaEstadoLetras.set(letraApagar.get(1), 0);
-                                this.listaEstadoLetras.set(letraApagar.get(2), 0);
                             case 1:
-                                this.listaEstadoLetras.set(letraApagar.get(1), 0);
+                                this.listaEstadoLetras.set(letraApagar.get(0), 0);
                         }              
                     }
                     
@@ -375,14 +375,7 @@ public class FXMLGameController implements Initializable {
     public  ArrayList<Integer> letraASerApagada(String letra, String[] palavra){
         
         ArrayList<Integer> lista = new ArrayList<>();
-        
-        for(int i = 0; i < 5; i++){
-            
-            if(this.listaEstadoLetras.get(i) == 1 && removerAcentosStrings(palavra[i]).equals(letra)){
-                lista.add(i);
-            }
-        }
-        
+
         for(int j = 0; j < 5; j++){
  
             if(this.listaEstadoLetras.get(j) == 2 && removerAcentosStrings(palavra[j]).equals(letra)){
@@ -455,7 +448,7 @@ public class FXMLGameController implements Initializable {
         
         FXMLGameController.palavraEscolhida = database_palavras.getPalavraEscolhida();
         
-        //FXMLGameController.palavraEscolhida = "salsa"; // Para testes
+        //FXMLGameController.palavraEscolhida = "seria"; // Para testes
         
         this.btn_EnviarPalavra_Style = btn_EnviarPalavra.getStyle();
         this.btn_Desistir_Style = btn_Desistir.getStyle();
