@@ -1,6 +1,6 @@
 # Qual a palavra?
 
- - Versão final de um jogo desktop desenvolvido em JavaFX.
+ - Versão final de um jogo desktop desenvolvido em Java e FXML com banco de dados SQLite.
 
 ## Funcionamento:
  
@@ -11,20 +11,24 @@ A proposta é ter um jogo desktop offline onde o(a) usuário(a) não fica limita
 # Telas do jogo:
  
  ## Tela inicial
-![image](https://user-images.githubusercontent.com/58229800/166390686-05104de7-08a6-4293-abb4-cc72f331c2c3.png)
+ ![image](https://user-images.githubusercontent.com/58229800/173710964-2147e1e8-40b8-4b4e-aea5-ab8c104b78c9.png)
+
 ## Instruções do jogo
-![image](https://user-images.githubusercontent.com/58229800/168149925-526fb99c-1a77-4362-b0c9-54c451139f69.png)
+![image](https://user-images.githubusercontent.com/58229800/173710837-a7a5ee58-c8d0-4ad6-b876-c054032e0707.png)
+![image](https://user-images.githubusercontent.com/58229800/173710839-40b0f47a-1ba7-4673-b9b4-ef3599d0d202.png)
+
 ## Créditos do jogo
-![image](https://user-images.githubusercontent.com/58229800/166181149-e791ded4-8b73-421c-b1e4-82bcb88fe45e.png)
+![image](https://user-images.githubusercontent.com/58229800/173708597-a06ce001-c865-4046-96b7-98f15a377dcd.png)
+
 ## Tela do início do jogo
-![image](https://user-images.githubusercontent.com/58229800/166181151-243f392b-4391-4a20-ae32-dea060320738.png)
+![image](https://user-images.githubusercontent.com/58229800/173711137-24e15423-51e5-4ba2-89f4-6b9c57897470.png)
+
 ## Exemplo de uma partida no jogo
-![image](https://user-images.githubusercontent.com/58229800/166181463-9e0a0700-9ed2-4acb-b619-ba61aabb782b.png)
+![image](https://user-images.githubusercontent.com/58229800/173708373-f4ed0036-3f60-40cb-ac23-53c39e8b0d92.png)
+
 ## Exemplo de tela de vitória
 ![image](https://user-images.githubusercontent.com/58229800/168150521-a23455c6-a176-4ea1-9212-8ca85e2923e6.png)
+
 ## Exemplo de tela de derrota
 ![image](https://user-images.githubusercontent.com/58229800/168150309-c891341b-abf4-4b3c-974a-487ca757e00e.png)
 
-# Atualizações futuras 
-
-Como melhorias futuras, são planejadas adições de alguns recursos na partida para tornar o jogo mais desafiador e duradouro, com várias partidas seguidas e pontuação ao final.
