@@ -22,9 +22,9 @@ public class ConnectionSQLite {
 
         try {
             
-            // Passar 
-            // C:\Users\...\JogoPalavras\JavaBasico\database\\SQLite_db.db
-            String url = "jdbc:sqlite:database\\SQLite_db.db";
+            // Passar localização do banco. Exemplo:
+            // C:\\Users\\...\\JogoPalavras\\JavaBasico\\database\\SQLite_db.db
+            String url = "jdbc:sqlite:SQLite_db.db";
 
             this.conexao = DriverManager.getConnection(url);
 
